@@ -15,5 +15,8 @@
     <color name="bottone_normale">@color/accent</color>
     <color name="bottone_selezionato">@color/accent_dark</color>
     <color name="bottone_disabilitato">#BDBDBD</color>
+    <color name="bottone_arrotondato">#FFFFFF</color>
+    <color name="bottone_arrotondato_colore_iniziale">#00dbde</color>
+    <color name="bottone_arrotondato_colore_finale">#fc00ff</color>
 
 </resources>
