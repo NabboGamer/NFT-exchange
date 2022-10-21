@@ -6,8 +6,13 @@ import android.util.Log;
 
 import androidx.multidex.MultiDexApplication;
 
+import java.util.ArrayList;
+
+import it.unibas.nft_exchange.controllo.ControlloVistaLogin;
+import it.unibas.nft_exchange.modello.ArchivioProfili;
 import it.unibas.nft_exchange.modello.Modello;
 import it.unibas.nft_exchange.modello.ModelloPersistente;
+import it.unibas.nft_exchange.modello.Profilo;
 
 public class Applicazione extends MultiDexApplication {
 
@@ -24,6 +29,7 @@ public class Applicazione extends MultiDexApplication {
         Log.d(TAG, "Applicazione creata...");
         singleton = (Applicazione) getApplicationContext();
         singleton.registerActivityLifecycleCallbacks(new GestoreAttivita());
+        Applicazione.getInstance().getModelloPersistente().saveBean(Costanti.ARCHIVIO_PROFILI, new ArchivioProfili(new ArrayList<Profilo>()));
     }
 
     /////////////////////////////////////////////
@@ -32,6 +38,7 @@ public class Applicazione extends MultiDexApplication {
 
     private Modello modello = new Modello();
     private ModelloPersistente modelloPersistente = new ModelloPersistente();
+    private ControlloVistaLogin controlloVistaLogin = new ControlloVistaLogin();
 
     public Activity getCurrentActivity() {
         return this.currentActivity;
@@ -41,12 +48,17 @@ public class Applicazione extends MultiDexApplication {
         return modello;
     }
 
+    public ControlloVistaLogin getControlloVistaLogin() {
+        return controlloVistaLogin;
+    }
+
     public ModelloPersistente getModelloPersistente() {
         return modelloPersistente;
     }
 
     //////////////////////////////////////////////
     //////////////////////////////////////////////
+
     private class GestoreAttivita implements ActivityLifecycleCallbacks {
         @Override
         public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
