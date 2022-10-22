@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">NFT Exchange</string>
+    <string name="menu_etichetta_1">Collezione</string>
+    <string name="menu_etichetta_2">Crea NFT</string>
+    <string name="menu_etichetta_3">Invia NFT</string>
+    <string name="menu_etichetta_4">Invia ETH</string>
 </resources>
