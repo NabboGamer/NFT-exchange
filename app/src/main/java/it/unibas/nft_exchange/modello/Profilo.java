@@ -36,6 +36,15 @@ public class Profilo {
         this.chiavePrivata = chiavePrivata;
     }
 
+    public boolean equals(Profilo altroProfilo) {
+        if(this.username.equals(altroProfilo.getUsername()) &&
+           this.password.equals(altroProfilo.getPassword()) &&
+           this.chiavePrivata.equals(altroProfilo.getChiavePrivata())){
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Profilo{");

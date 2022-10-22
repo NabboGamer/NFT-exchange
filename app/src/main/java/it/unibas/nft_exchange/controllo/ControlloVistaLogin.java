@@ -1,11 +1,15 @@
 package it.unibas.nft_exchange.controllo;
 
 import android.view.View;
+import android.widget.Button;
+
+import androidx.core.content.ContextCompat;
 
 import java.util.List;
 
 import it.unibas.nft_exchange.Applicazione;
 import it.unibas.nft_exchange.Costanti;
+import it.unibas.nft_exchange.R;
 import it.unibas.nft_exchange.activity.ActivityLogin;
 import it.unibas.nft_exchange.modello.ArchivioProfili;
 import it.unibas.nft_exchange.modello.Profilo;
@@ -13,10 +17,16 @@ import it.unibas.nft_exchange.vista.VistaLogin;
 
 public class ControlloVistaLogin {
 
+    private static String TAG = ControlloVistaLogin.class.getSimpleName();
     private View.OnClickListener azioneLogin = new AzioneLogin();
+    private View.OnClickListener azioneMostraVistaRegistrazione = new AzioneMostraVistaRegistrazione();
 
     public View.OnClickListener getAzioneLogin() {
         return azioneLogin;
+    }
+
+    public View.OnClickListener getAzioneMostraVistaRegistrazione() {
+        return azioneMostraVistaRegistrazione;
     }
 
     private class AzioneLogin implements View.OnClickListener {
@@ -54,6 +64,18 @@ public class ControlloVistaLogin {
                 vistaLogin.setErrorePassword("La password è obbligatoria");
             }
             return errori;
+        }
+    }
+
+    private class AzioneMostraVistaRegistrazione implements View.OnClickListener {
+
+        @Override
+        public void onClick(View view) {
+            ActivityLogin activityLogin = (ActivityLogin) Applicazione.getInstance().getCurrentActivity();
+            VistaLogin vistaLogin = activityLogin.getVistaLogin();
+            Button bottoneMostraVistaRegistrati = vistaLogin.getBottoneMostraVistaRegistrazione();
+            bottoneMostraVistaRegistrati.setTextColor(ContextCompat.getColor(Applicazione.getInstance().getCurrentActivity().getBaseContext(), R.color.bottone_arrotondato_colore_finale));
+            activityLogin.mostraActivityRegistrazione();
         }
     }
 }

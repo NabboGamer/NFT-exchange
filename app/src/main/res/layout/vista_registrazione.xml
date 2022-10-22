@@ -97,7 +97,8 @@
             android:fontFamily="@font/concert_one"
             android:hint="🔑 Inserisci la tua chiave privata"
             android:inputType="textPersonName"
-            android:minHeight="48dp" />
+            android:minHeight="48dp"
+            android:text="c3433bb9d586314e63586c7e108b587e2ad4fdab3ebe5aaa34e6925e50d49523" />
 
         <Button
             android:id="@+id/bottoneRegistrati"

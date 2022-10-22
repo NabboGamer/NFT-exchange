@@ -23,6 +23,24 @@ public class ArchivioProfili {
         this.listaProfili.add(profilo);
     }
 
+    public boolean isProfiloEsistente(Profilo profiloDaVerificare){
+        for (Profilo profilo : listaProfili) {
+            if(profilo.equals(profiloDaVerificare)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isProfiloStessoUsername(Profilo profiloDaVerificare){
+        for (Profilo profilo : listaProfili) {
+            if(profilo.getUsername().equals(profiloDaVerificare.getUsername())){
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("ArchivioProfili{");

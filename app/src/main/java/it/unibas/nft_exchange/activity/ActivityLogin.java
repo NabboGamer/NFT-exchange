@@ -35,7 +35,9 @@ public class ActivityLogin extends AppCompatActivity {
         builder.create().show();
     }
 
-    public void mostraActivityRegistrati(){
+    public void mostraActivityRegistrazione(){
+        Intent intent = new Intent(this, ActivityRegistrazione.class);
+        this.startActivity(intent);
     }
 
     public void mostraActivityPrincipale(){

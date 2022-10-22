@@ -27,7 +27,12 @@ public class VistaLogin extends Fragment {
         this.bottoneLogin = vista.findViewById(R.id.bottoneLogin);
         this.bottoneMostraVistaRegistrazione = vista.findViewById(R.id.bottoneMostraVistaRegistrazione);
         this.bottoneLogin.setOnClickListener(Applicazione.getInstance().getControlloVistaLogin().getAzioneLogin());
+        this.bottoneMostraVistaRegistrazione.setOnClickListener(Applicazione.getInstance().getControlloVistaLogin().getAzioneMostraVistaRegistrazione());
         return vista;
+    }
+
+    public Button getBottoneMostraVistaRegistrazione() {
+        return bottoneMostraVistaRegistrazione;
     }
 
     public String getUsername(){

@@ -9,6 +9,7 @@ import androidx.multidex.MultiDexApplication;
 import java.util.ArrayList;
 
 import it.unibas.nft_exchange.controllo.ControlloVistaLogin;
+import it.unibas.nft_exchange.controllo.ControlloVistaRegistrazione;
 import it.unibas.nft_exchange.modello.ArchivioProfili;
 import it.unibas.nft_exchange.modello.Modello;
 import it.unibas.nft_exchange.modello.ModelloPersistente;
@@ -29,7 +30,10 @@ public class Applicazione extends MultiDexApplication {
         Log.d(TAG, "Applicazione creata...");
         singleton = (Applicazione) getApplicationContext();
         singleton.registerActivityLifecycleCallbacks(new GestoreAttivita());
-        Applicazione.getInstance().getModelloPersistente().saveBean(Costanti.ARCHIVIO_PROFILI, new ArchivioProfili(new ArrayList<Profilo>()));
+        ArchivioProfili archivioProfili = (ArchivioProfili) Applicazione.getInstance().getModelloPersistente().getPersistentBean(Costanti.ARCHIVIO_PROFILI,ArchivioProfili.class);
+        if(archivioProfili == null){
+            Applicazione.getInstance().getModelloPersistente().saveBean(Costanti.ARCHIVIO_PROFILI, new ArchivioProfili(new ArrayList<Profilo>()));
+        }
     }
 
     /////////////////////////////////////////////
@@ -39,6 +43,7 @@ public class Applicazione extends MultiDexApplication {
     private Modello modello = new Modello();
     private ModelloPersistente modelloPersistente = new ModelloPersistente();
     private ControlloVistaLogin controlloVistaLogin = new ControlloVistaLogin();
+    private ControlloVistaRegistrazione controlloVistaRegistrazione = new ControlloVistaRegistrazione();
 
     public Activity getCurrentActivity() {
         return this.currentActivity;
@@ -48,15 +53,18 @@ public class Applicazione extends MultiDexApplication {
         return modello;
     }
 
-    public ControlloVistaLogin getControlloVistaLogin() {
-        return controlloVistaLogin;
-    }
-
     public ModelloPersistente getModelloPersistente() {
         return modelloPersistente;
     }
 
-    //////////////////////////////////////////////
+    public ControlloVistaLogin getControlloVistaLogin() {
+        return controlloVistaLogin;
+    }
+
+    public ControlloVistaRegistrazione getControlloVistaRegistrazione() {
+        return controlloVistaRegistrazione;
+    }
+//////////////////////////////////////////////
     //////////////////////////////////////////////
 
     private class GestoreAttivita implements ActivityLifecycleCallbacks {
