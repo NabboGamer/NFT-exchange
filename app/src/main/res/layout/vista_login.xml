@@ -118,7 +118,7 @@
                     android:fontFamily="@font/concert_one"
                     android:text="Registrati"
                     android:textAllCaps="false"
-                    android:textColor="@color/bottone_arrotondato_colore_iniziale" />
+                    android:textColor="@drawable/bottone_registrati" />
 
             </LinearLayout>
         </LinearLayout>
