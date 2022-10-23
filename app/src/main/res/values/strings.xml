@@ -4,4 +4,6 @@
     <string name="menu_etichetta_2">Crea NFT</string>
     <string name="menu_etichetta_3">Invia NFT</string>
     <string name="menu_etichetta_4">Invia ETH</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

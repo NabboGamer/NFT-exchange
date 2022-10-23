@@ -8,6 +8,7 @@ import androidx.multidex.MultiDexApplication;
 
 import java.util.ArrayList;
 
+import it.unibas.nft_exchange.controllo.ControlloPrincipale;
 import it.unibas.nft_exchange.controllo.ControlloVistaLogin;
 import it.unibas.nft_exchange.controllo.ControlloVistaRegistrazione;
 import it.unibas.nft_exchange.modello.ArchivioProfili;
@@ -44,6 +45,7 @@ public class Applicazione extends MultiDexApplication {
     private ModelloPersistente modelloPersistente = new ModelloPersistente();
     private ControlloVistaLogin controlloVistaLogin = new ControlloVistaLogin();
     private ControlloVistaRegistrazione controlloVistaRegistrazione = new ControlloVistaRegistrazione();
+    private ControlloPrincipale controlloPrincipale = new ControlloPrincipale();
 
     public Activity getCurrentActivity() {
         return this.currentActivity;
@@ -63,6 +65,10 @@ public class Applicazione extends MultiDexApplication {
 
     public ControlloVistaRegistrazione getControlloVistaRegistrazione() {
         return controlloVistaRegistrazione;
+    }
+
+    public ControlloPrincipale getControlloPrincipale() {
+        return controlloPrincipale;
     }
 //////////////////////////////////////////////
     //////////////////////////////////////////////
