@@ -40,20 +40,28 @@ public class ActivityPrincipale extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.page_1:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragmentCollezione).commit();
+                        getSupportActionBar().setTitle("Collezione");
                         return true;
                     case R.id.page_2:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragmentCreaNFT).commit();
+                        getSupportActionBar().setTitle("Crea NFT");
                         return true;
                     case R.id.page_3:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragmentInviaNFT).commit();
+                        getSupportActionBar().setTitle("Invia NFT");
                         return true;
                     case R.id.page_4:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragmentInviaETH).commit();
+                        getSupportActionBar().setTitle("Invia ETH");
                         return true;
                 }
                 return false;
             }
         });
+    }
+
+    public FragmentInviaETH getFragmentInviaETH(){
+        return (FragmentInviaETH) getSupportFragmentManager().findFragmentById(R.id.container);
     }
 
 }

@@ -47,6 +47,7 @@ public class ControlloVistaLogin {
                 if(profilo.getUsername().equals(username) && profilo.getPassword().equals(password)){
                     activityLogin.mostraMessaggioToast("Login effettuato correttamente");
                     activityLogin.mostraActivityPrincipale();
+                    Applicazione.getInstance().getModello().putBean(Costanti.PROFILO_CORRENTE, profilo);
                     return;
                 }
             }

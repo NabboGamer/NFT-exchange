@@ -1,15 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".vista.FragmentInviaETH">
+    tools:context=".vista.FragmentInviaETH" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Fragment invia ETH"
-        android:textSize="25dp"
-        android:layout_centerInParent="true"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/labelUsernameInviaETH"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/concert_one"
+            android:gravity="center"
+            android:text="TextView"
+            android:textColor="@color/material_dynamic_neutral0"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/labelAddressInviaETH"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="30dp"
+            android:fontFamily="@font/concert_one"
+            android:gravity="center"
+            android:text="TextView" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="96dp"
+            android:maxHeight="40dp"
+            android:minHeight="40dp"
+            android:src="@drawable/ethereum_eth_logo" />
+
+        <TextView
+            android:id="@+id/labelBilancioInETHInviaETH"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/concert_one"
+            android:gravity="center"
+            android:text="TextView"
+            android:textColor="@color/material_dynamic_neutral_variant0"
+            android:textSize="34sp" />
+
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            android:fontFamily="@font/concert_one"
+            android:text="Address" />
+
+        <EditText
+            android:id="@+id/campoIndirizzoInviaETH"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:ems="10"
+            android:fontFamily="@font/concert_one"
+            android:hint="🏠 Inserisci l'indirizzo del destinatario"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:text="0x365a2457b6e9b6886bc5c31C4AA4DE3dA5cE1c5A" />
+
+        <Button
+            android:id="@+id/bottoneInviaETH"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/bottone_login"
+            android:text="INVIA" />
+
+    </LinearLayout>
+</ScrollView>

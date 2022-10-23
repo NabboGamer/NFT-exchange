@@ -12,8 +12,9 @@ import it.unibas.nft_exchange.R;
 public class FragmentInviaNFT extends Fragment {
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_invia_n_f_t, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View vista = inflater.inflate(R.layout.fragment_invia_n_f_t, container, false);
+
+        return vista;
     }
 }
