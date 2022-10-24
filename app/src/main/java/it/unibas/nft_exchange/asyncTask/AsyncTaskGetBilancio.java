@@ -1,4 +1,4 @@
-package it.unibas.nft_exchange.vista;
+package it.unibas.nft_exchange.asyncTask;
 
 import android.os.AsyncTask;
 import android.util.Log;
@@ -14,6 +14,8 @@ import java.math.BigInteger;
 
 import it.unibas.nft_exchange.Applicazione;
 import it.unibas.nft_exchange.Costanti;
+import it.unibas.nft_exchange.activity.ActivityPrincipale;
+import it.unibas.nft_exchange.vista.FragmentInviaETH;
 
 public class AsyncTaskGetBilancio extends AsyncTask<Void, Void, BigDecimal> {
 
@@ -31,12 +33,20 @@ public class AsyncTaskGetBilancio extends AsyncTask<Void, Void, BigDecimal> {
 
     @Override
     protected BigDecimal doInBackground(Void... voids) {
+        ActivityPrincipale activityPrincipale = (ActivityPrincipale) Applicazione.getInstance().getCurrentActivity();
         Web3j web3j = Web3j.build(new HttpService("http://10.0.2.2:8545"));
         EthGetBalance ethGetBalance = null;
         try {
             ethGetBalance = web3j.ethGetBalance(this.address, DefaultBlockParameterName.LATEST).sendAsync().get();
         } catch (Exception e) {
             e.printStackTrace();
+            activityPrincipale.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    activityPrincipale.mostraMessaggioToast("Impossibile stabilire una connessione con la BlockChain");
+                }
+            });
+            return BigDecimal.ZERO;
         }
         BigInteger wei = ethGetBalance.getBalance();
         Log.d(TAG, "Bilancio in wei: " + wei);
@@ -49,8 +59,11 @@ public class AsyncTaskGetBilancio extends AsyncTask<Void, Void, BigDecimal> {
     protected void onPostExecute(BigDecimal bilancioETH) {
         super.onPostExecute(bilancioETH);
         StringBuilder stringaBilancioETH = new StringBuilder();
-        stringaBilancioETH.append(bilancioETH).append("ETH");
+        stringaBilancioETH.append(bilancioETH).append(" ETH");
         Log.d(TAG, "Bilancio in ETH: " + stringaBilancioETH.toString());
         Applicazione.getInstance().getModello().putBean(Costanti.STRINGA_BILANCIO_ETH, stringaBilancioETH.toString());
+        ActivityPrincipale activityPrincipale = (ActivityPrincipale) Applicazione.getInstance().getCurrentActivity();
+        FragmentInviaETH fragmentInviaETH = activityPrincipale.getFragmentInviaETH();
+        fragmentInviaETH.getLabelBilancioInETHInviaETH().setText(stringaBilancioETH);
     }
 }

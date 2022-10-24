@@ -46,7 +46,7 @@
             android:layout_marginTop="30dp"
             android:fontFamily="@font/concert_one"
             android:gravity="center"
-            android:text="TextView"
+            android:text="0 ETH"
             android:textColor="@color/material_dynamic_neutral_variant0"
             android:textSize="34sp" />
 

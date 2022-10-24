@@ -1,9 +1,12 @@
 package it.unibas.nft_exchange.activity;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -60,8 +63,21 @@ public class ActivityPrincipale extends AppCompatActivity {
         });
     }
 
+    public void aggiornaFragment(Fragment fragment){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            getSupportFragmentManager().beginTransaction().detach(fragment).commitNow();
+            getSupportFragmentManager().beginTransaction().attach(fragment).commitNow();
+        } else {
+            getSupportFragmentManager().beginTransaction().detach(fragment).attach(fragment).commit();
+        }
+    }
+
     public FragmentInviaETH getFragmentInviaETH(){
         return (FragmentInviaETH) getSupportFragmentManager().findFragmentById(R.id.container);
+    }
+
+    public void mostraMessaggioToast(String msg){
+        Toast.makeText(this,msg,Toast.LENGTH_LONG).show();
     }
 
 }

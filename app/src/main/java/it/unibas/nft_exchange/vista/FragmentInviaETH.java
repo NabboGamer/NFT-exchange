@@ -16,6 +16,7 @@ import org.web3j.crypto.Credentials;
 import it.unibas.nft_exchange.Applicazione;
 import it.unibas.nft_exchange.Costanti;
 import it.unibas.nft_exchange.R;
+import it.unibas.nft_exchange.asyncTask.AsyncTaskGetBilancio;
 import it.unibas.nft_exchange.modello.Profilo;
 
 public class FragmentInviaETH extends Fragment {
@@ -50,11 +51,19 @@ public class FragmentInviaETH extends Fragment {
         new AsyncTaskGetBilancio(credentials.getAddress()).execute();
         String stringaBilancioETH = (String) Applicazione.getInstance().getModello().getBean(Costanti.STRINGA_BILANCIO_ETH);
         Log.d(TAG,"Stringa Bilancio ETH: " + stringaBilancioETH);
-        this.labelBilancioInETHInviaETH.setText(stringaBilancioETH);
+        if(stringaBilancioETH == null){
+            return;
+        }else{
+            this.labelBilancioInETHInviaETH.setText(stringaBilancioETH);
+        }
     }
 
     public String getIndirizzoDiInvio(){
         return this.campoIndirizzoInviaETH.getText().toString();
+    }
+
+    public TextView getLabelBilancioInETHInviaETH() {
+        return labelBilancioInETHInviaETH;
     }
 
     public void setErroreIndirizzoInvioETH(String err){
