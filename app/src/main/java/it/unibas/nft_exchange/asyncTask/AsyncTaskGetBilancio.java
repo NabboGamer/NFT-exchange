@@ -62,6 +62,7 @@ public class AsyncTaskGetBilancio extends AsyncTask<Void, Void, BigDecimal> {
         stringaBilancioETH.append(bilancioETH).append(" ETH");
         Log.d(TAG, "Bilancio in ETH: " + stringaBilancioETH.toString());
         Applicazione.getInstance().getModello().putBean(Costanti.STRINGA_BILANCIO_ETH, stringaBilancioETH.toString());
+        Applicazione.getInstance().getModello().putBean(Costanti.BILANCIO_ETH, bilancioETH);
         ActivityPrincipale activityPrincipale = (ActivityPrincipale) Applicazione.getInstance().getCurrentActivity();
         FragmentInviaETH fragmentInviaETH = activityPrincipale.getFragmentInviaETH();
         fragmentInviaETH.getLabelBilancioInETHInviaETH().setText(stringaBilancioETH);

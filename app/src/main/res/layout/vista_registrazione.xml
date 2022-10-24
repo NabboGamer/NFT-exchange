@@ -98,7 +98,7 @@
             android:hint="🔑 Inserisci la tua chiave privata"
             android:inputType="textPersonName"
             android:minHeight="48dp"
-            android:text="c3433bb9d586314e63586c7e108b587e2ad4fdab3ebe5aaa34e6925e50d49523" />
+            android:text="f26a4ebd532709ab8e66fd81866b4a817ee9f26ea8db2be3a9a551be8cd56742" />
 
         <Button
             android:id="@+id/bottoneRegistrati"
@@ -108,7 +108,8 @@
             android:layout_marginTop="40dp"
             android:layout_marginEnd="30dp"
             android:background="@drawable/bottone_login"
-            android:text="Registrati" />
+            android:text="Registrati"
+            android:fontFamily="@font/concert_one"/>
 
     </LinearLayout>
 </ScrollView>

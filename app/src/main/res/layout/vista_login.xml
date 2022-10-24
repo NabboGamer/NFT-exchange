@@ -87,7 +87,8 @@
             android:layout_marginTop="40dp"
             android:layout_marginEnd="30dp"
             android:background="@drawable/bottone_login"
-            android:text="LOGIN" />
+            android:text="LOGIN"
+            android:fontFamily="@font/concert_one"/>
 
         <LinearLayout
             android:layout_width="match_parent"

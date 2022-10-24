@@ -25,12 +25,16 @@ public class AsyncTaskInviaETH extends AsyncTask<Void, Void, Void> {
     private static String TAG = AsyncTaskInviaETH.class.getSimpleName();
     private String SENDER_PRIVATE_KEY;
     private String RECEIVER_ADDRESS;
+    private BigDecimal AMOUNT;
     private BigInteger GAS_PRICE;
-    private BigInteger GAS_LIMIT = BigInteger.valueOf(6721975L);
+    private BigInteger GAS_LIMIT;
 
-    public AsyncTaskInviaETH(String SENDER_PRIVATE_KEY, String RECEIVER_ADDRESS) {
+    public AsyncTaskInviaETH(String SENDER_PRIVATE_KEY, String RECEIVER_ADDRESS, BigDecimal AMOUNT, BigInteger GAS_PRICE, BigInteger GAS_LIMIT) {
         this.SENDER_PRIVATE_KEY = SENDER_PRIVATE_KEY;
         this.RECEIVER_ADDRESS = RECEIVER_ADDRESS;
+        this.AMOUNT = AMOUNT;
+        this.GAS_PRICE = GAS_PRICE;
+        this.GAS_LIMIT = GAS_LIMIT;
     }
 
     @Override
@@ -45,8 +49,7 @@ public class AsyncTaskInviaETH extends AsyncTask<Void, Void, Void> {
         TransactionManager transactionManager = new RawTransactionManager(web3j, this.getCredentialsFromPrivateKey());
         Transfer transfer = new Transfer(web3j, transactionManager);
         try {
-            GAS_PRICE = web3j.ethGasPrice().sendAsync().get().getGasPrice();
-            CompletableFuture<TransactionReceipt> transactionReceipt = transfer.sendFunds(RECEIVER_ADDRESS, BigDecimal.ONE, Convert.Unit.ETHER, GAS_PRICE, GAS_LIMIT).sendAsync();
+            CompletableFuture<TransactionReceipt> transactionReceipt = transfer.sendFunds(RECEIVER_ADDRESS, AMOUNT, Convert.Unit.ETHER, GAS_PRICE, GAS_LIMIT).sendAsync();
             Log.d(TAG, "Transaction = " + transactionReceipt.get().getTransactionHash());
             activityPrincipale.runOnUiThread(new Runnable() {
                 @Override
@@ -59,7 +62,7 @@ public class AsyncTaskInviaETH extends AsyncTask<Void, Void, Void> {
             activityPrincipale.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    activityPrincipale.mostraMessaggioToast("Impossibile stabilire una connessione con la BlockChain");
+                    activityPrincipale.mostraMessaggioToast("Impossibile effettuare la transazione");
                 }
             });
         }

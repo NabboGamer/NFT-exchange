@@ -26,6 +26,9 @@ public class FragmentInviaETH extends Fragment {
     private TextView labelAddressInviaETH;
     private TextView labelBilancioInETHInviaETH;
     private EditText campoIndirizzoInviaETH;
+    private EditText campoImportoInviaETH;
+    private EditText campoPrezzoGASInviaETH;
+    private EditText campoLimiteGASInviaETH;
     private Button bottoneInviaETH;
     private Profilo profiloCorrente = (Profilo) Applicazione.getInstance().getModello().getBean(Costanti.PROFILO_CORRENTE);
 
@@ -36,6 +39,9 @@ public class FragmentInviaETH extends Fragment {
         this.labelAddressInviaETH = vista.findViewById(R.id.labelAddressInviaETH);
         this.labelBilancioInETHInviaETH = vista.findViewById(R.id.labelBilancioInETHInviaETH);
         this.campoIndirizzoInviaETH = vista.findViewById(R.id.campoIndirizzoInviaETH);
+        this.campoImportoInviaETH = vista.findViewById(R.id.campoImportoInviaETH);
+        this.campoPrezzoGASInviaETH = vista.findViewById(R.id.campoPrezzoGASInviaETH);
+        this.campoLimiteGASInviaETH = vista.findViewById(R.id.campoLimiteGASInviaETH);
         this.bottoneInviaETH = vista.findViewById(R.id.bottoneInviaETH);
         this.bottoneInviaETH.setOnClickListener(Applicazione.getInstance().getControlloFragmentInviaETH().getAzioneInviaETH());
         this.inizializzaLabel();
@@ -58,15 +64,39 @@ public class FragmentInviaETH extends Fragment {
         }
     }
 
-    public String getIndirizzoDiInvio(){
-        return this.campoIndirizzoInviaETH.getText().toString();
-    }
-
     public TextView getLabelBilancioInETHInviaETH() {
         return labelBilancioInETHInviaETH;
     }
 
+    public String getIndirizzoDiInvio(){
+        return this.campoIndirizzoInviaETH.getText().toString();
+    }
+
+    public String getImportoInvio(){
+        return this.campoImportoInviaETH.getText().toString();
+    }
+
+    public String getPrezzoGAS(){
+        return this.campoPrezzoGASInviaETH.getText().toString();
+    }
+
+    public String getLimiteGAS(){
+        return this.campoLimiteGASInviaETH.getText().toString();
+    }
+
     public void setErroreIndirizzoInvioETH(String err){
         this.campoIndirizzoInviaETH.setError(err);
+    }
+
+    public void setErroreImportoInviaETH(String err){
+        this.campoImportoInviaETH.setError(err);
+    }
+
+    public void setErrorePrezzoGASInviaETH(String err){
+        this.campoPrezzoGASInviaETH.setError(err);
+    }
+
+    public void setErroreLimiteGASInviaETH(String err){
+        this.campoLimiteGASInviaETH.setError(err);
     }
 }
