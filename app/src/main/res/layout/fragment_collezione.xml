@@ -1,15 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".vista.FragmentCollezione">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Fragment collezione"
-        android:textSize="25dp"
-        android:layout_centerInParent="true"/>
+        android:orientation="vertical">
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:fontFamily="@font/concert_one"
+            android:gravity="center"
+            android:text="Crea la tua collezione"
+            android:textColor="@android:color/black"
+            android:textSize="34sp" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            android:fontFamily="@font/concert_one"
+            android:text="Nome" />
+
+        <EditText
+            android:id="@+id/campoNomeCreaCollezione"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:ems="10"
+            android:fontFamily="@font/concert_one"
+            android:hint="📛 Inserisci il nome della collezione"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            android:fontFamily="@font/concert_one"
+            android:text="Descrizione" />
+
+        <EditText
+            android:id="@+id/campoDescrizioneCreaCollezione"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:ems="10"
+            android:fontFamily="@font/concert_one"
+            android:hint="📃 Inserisci descrizione della collezione"
+            android:inputType="textMultiLine|textPersonName"
+            android:minHeight="48dp" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            android:fontFamily="@font/concert_one"
+            android:gravity="center"
+            android:text="Creare una collezione sottrarrà una piccola quantità di ETH dal profilo corrente"
+            android:textColor="@android:color/holo_red_light" />
+
+        <Button
+            android:id="@+id/bottoneCreaCollezione"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/bottone_login"
+            android:fontFamily="@font/concert_one"
+            android:text="CREA" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            android:fontFamily="@font/concert_one"
+            android:text="Le tue collezioni" />
+
+        <ListView
+            android:id="@+id/listViewCollezioniProfilo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp" />
+
+    </LinearLayout>
+</ScrollView>

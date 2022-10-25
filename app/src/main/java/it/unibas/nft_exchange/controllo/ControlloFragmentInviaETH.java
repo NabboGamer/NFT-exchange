@@ -61,6 +61,11 @@ public class ControlloFragmentInviaETH {
             Log.d(TAG, "Costo totale in BigDecimal in ETH: " + costoTotale);
 
             BigDecimal bilancioAccountInETH = (BigDecimal) Applicazione.getInstance().getModello().getBean(Costanti.BILANCIO_ETH);
+            Log.d(TAG,"Bilancio account in ETH caso mancata connessione: " + bilancioAccountInETH);
+            if(bilancioAccountInETH == null){
+                activityPrincipale.mostraMessaggioToast("Non possiedi fondi sufficienti");
+                return;
+            }
             if(bilancioAccountInETH.compareTo(costoTotale) == -1){
                 activityPrincipale.mostraMessaggioToast("Non possiedi fondi sufficienti");
                 return;

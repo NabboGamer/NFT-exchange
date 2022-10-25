@@ -77,7 +77,12 @@ public class AsyncTaskInviaETH extends AsyncTask<Void, Void, Void> {
     protected void onPostExecute(Void unused) {
         super.onPostExecute(unused);
         ActivityPrincipale activityPrincipale = (ActivityPrincipale) Applicazione.getInstance().getCurrentActivity();
-        FragmentInviaETH fragmentInviaETH = activityPrincipale.getFragmentInviaETH();
-        activityPrincipale.aggiornaFragment(fragmentInviaETH);
+        try{
+            FragmentInviaETH fragmentInviaETH = activityPrincipale.getFragmentInviaETH();
+            activityPrincipale.aggiornaFragment(fragmentInviaETH);
+        } catch (ClassCastException ccex){
+            Log.e(TAG,"Non è stato possibile inviare la somma poichè la finestra è stata cambiata prima di aver ottenuto la risposta dalla blockchain");
+        }
+
     }
 }
