@@ -5,6 +5,7 @@ public class Collezione {
     private String nome;
     private String descrizione;
     private String contractAddress;
+    private String usernameCreatore;
 
     public Collezione(String nome, String descrizione) {
         this.nome = nome;
@@ -35,12 +36,21 @@ public class Collezione {
         this.contractAddress = contractAddress;
     }
 
+    public String getUsernameCreatore() {
+        return usernameCreatore;
+    }
+
+    public void setUsernameCreatore(String usernameCreatore) {
+        this.usernameCreatore = usernameCreatore;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Collezione{");
         sb.append("nome='").append(nome).append('\'');
         sb.append(", descrizione='").append(descrizione).append('\'');
         sb.append(", contractAddress='").append(contractAddress).append('\'');
+        sb.append(", usernameCreatore='").append(usernameCreatore).append('\'');
         sb.append('}');
         return sb.toString();
     }

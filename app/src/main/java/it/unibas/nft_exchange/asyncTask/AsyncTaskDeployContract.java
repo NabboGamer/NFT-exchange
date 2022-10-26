@@ -20,6 +20,7 @@ import it.unibas.nft_exchange.contract.ThesisToken;
 import it.unibas.nft_exchange.modello.ArchivioProfili;
 import it.unibas.nft_exchange.modello.Collezione;
 import it.unibas.nft_exchange.modello.Profilo;
+import it.unibas.nft_exchange.vista.FragmentCollezione;
 
 public class AsyncTaskDeployContract extends AsyncTask<Void, Void, Void> {
 
@@ -45,14 +46,18 @@ public class AsyncTaskDeployContract extends AsyncTask<Void, Void, Void> {
         Web3j web3j = Web3j.build(new HttpService("http://10.0.2.2:8545"));
         TransactionManager transactionManager = new RawTransactionManager(web3j, this.getCredentialsFromPrivateKey());
         try {
+            ///// PARTE NECESSARIA A LIVELLO DI BLOCKCHAIN PER CREARE LA COLLEZIONE(DEPOLY DELLO SMART-CONTRACT) /////
             CompletableFuture<ThesisToken> thesisTokenCompletableFuture = ThesisToken.deploy(web3j, transactionManager, new StaticGasProvider(GAS_PRICE, GAS_LIMIT)).sendAsync();
-            String contractAddress = thesisTokenCompletableFuture.get().getContractAddress();
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+            ///// PARTE NECESSARIA A LIVELLO APPLICATIVO PER RENDERE CONSISTENTE LA CREAZIONE DELLA COLLEZIONE /////
+            String contractAddress = thesisTokenCompletableFuture.get().getContractAddress();
+            collezione.setUsernameCreatore(profiloCorrente.getUsername());
             collezione.setContractAddress(contractAddress);
             profiloCorrente.aggiungiCollezione(collezione);
-
             ArchivioProfili archivioProfili = (ArchivioProfili) Applicazione.getInstance().getModelloPersistente().getPersistentBean(Costanti.ARCHIVIO_PROFILI, ArchivioProfili.class);
             Applicazione.getInstance().getModelloPersistente().saveBean(Costanti.ARCHIVIO_PROFILI,archivioProfili);
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             Log.d(TAG, "Profilo corrente Async: " + profiloCorrente);
             Log.d(TAG, "Collezione corrente Async: " + collezione);
@@ -62,6 +67,8 @@ public class AsyncTaskDeployContract extends AsyncTask<Void, Void, Void> {
                 @Override
                 public void run() {
                     activityPrincipale.mostraMessaggioToast("Collezione creata correttamente");
+                    FragmentCollezione fragmentCollezione = activityPrincipale.getFragmentCollezione();
+                    fragmentCollezione.aggiornaContenuto();
                 }
             });
         } catch (Exception ex) {

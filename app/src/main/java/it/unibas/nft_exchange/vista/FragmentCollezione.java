@@ -1,6 +1,7 @@
 package it.unibas.nft_exchange.vista;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,10 +12,13 @@ import android.widget.ListView;
 import androidx.fragment.app.Fragment;
 
 import it.unibas.nft_exchange.Applicazione;
+import it.unibas.nft_exchange.Costanti;
 import it.unibas.nft_exchange.R;
+import it.unibas.nft_exchange.modello.Profilo;
 
 public class FragmentCollezione extends Fragment {
 
+    private static String TAG = FragmentCollezione.class.getSimpleName();
     private EditText campoNomeCreaCollezione;
     private EditText campoDescrizioneCreaCollezione;
     private Button bottoneCreaCollezione;
@@ -31,12 +35,25 @@ public class FragmentCollezione extends Fragment {
         return vista;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        aggiornaContenuto();
+    }
+
+    public void aggiornaContenuto() {
+        Profilo profiloCorrente = (Profilo) Applicazione.getInstance().getModello().getBean(Costanti.PROFILO_CORRENTE);
+        Log.d(TAG, "Profilo corrente: " + profiloCorrente);
+        AdapterCollezioni adapterCollezioni = new AdapterCollezioni(profiloCorrente.getListaCollezioni());
+        this.listViewCollezioniProfilo.setAdapter(adapterCollezioni);
+    }
+
     public String getNome(){
         return this.campoNomeCreaCollezione.getText().toString();
     }
 
     public String getDescrizione(){
-        return this.campoNomeCreaCollezione.getText().toString();
+        return this.campoDescrizioneCreaCollezione.getText().toString();
     }
 
     public void setErroreNome(String err){

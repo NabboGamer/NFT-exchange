@@ -79,6 +79,7 @@ public class Profilo {
         sb.append("username='").append(username).append('\'');
         sb.append(", password='").append(password).append('\'');
         sb.append(", chiavePrivata='").append(chiavePrivata).append('\'');
+        sb.append(", listaCollezioni=").append(listaCollezioni);
         sb.append('}');
         return sb.toString();
     }
