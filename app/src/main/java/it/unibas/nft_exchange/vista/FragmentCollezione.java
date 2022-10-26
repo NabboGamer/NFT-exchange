@@ -10,6 +10,7 @@ import android.widget.ListView;
 
 import androidx.fragment.app.Fragment;
 
+import it.unibas.nft_exchange.Applicazione;
 import it.unibas.nft_exchange.R;
 
 public class FragmentCollezione extends Fragment {
@@ -26,6 +27,7 @@ public class FragmentCollezione extends Fragment {
         this.campoDescrizioneCreaCollezione = vista.findViewById(R.id.campoDescrizioneCreaCollezione);
         this.bottoneCreaCollezione = vista.findViewById(R.id.bottoneCreaCollezione);
         this.listViewCollezioniProfilo = vista.findViewById(R.id.listViewCollezioniProfilo);
+        this.bottoneCreaCollezione.setOnClickListener(Applicazione.getInstance().getControlloFragmentCollezione().getAzioneCreaCollezione());
         return vista;
     }
 

@@ -1,10 +1,14 @@
 package it.unibas.nft_exchange.modello;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Profilo {
 
     private String username;
     private String password;
     private String chiavePrivata;
+    private List<Collezione> listaCollezioni;
 
     public Profilo(String username, String password, String chiavePrivata) {
         this.username = username;
@@ -36,11 +40,35 @@ public class Profilo {
         this.chiavePrivata = chiavePrivata;
     }
 
+    public List<Collezione> getListaCollezioni() {
+        return listaCollezioni;
+    }
+
+    public void setListaCollezioni(List<Collezione> listaCollezioni) {
+        this.listaCollezioni = listaCollezioni;
+    }
+
     public boolean equals(Profilo altroProfilo) {
         if(this.username.equals(altroProfilo.getUsername()) &&
            this.password.equals(altroProfilo.getPassword()) &&
            this.chiavePrivata.equals(altroProfilo.getChiavePrivata())){
             return true;
+        }
+        return false;
+    }
+
+    public void aggiungiCollezione(Collezione collezione){
+        this.listaCollezioni.add(collezione);
+    }
+
+    public boolean isCollezioneEsistente(String nome){
+        if(listaCollezioni == null){
+            listaCollezioni = new ArrayList<>();
+        }
+        for (Collezione collezione : this.listaCollezioni) {
+            if(collezione.getNome().equals(nome)){
+                return true;
+            }
         }
         return false;
     }

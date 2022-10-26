@@ -83,7 +83,7 @@ public class ThesisToken extends Contract {
 
     public static final String FUNC_TRANSFEROWNERSHIP = "transferOwnership";
 
-    public static final Event APPROVAL_EVENT = new Event("Approval", 
+    public static final Event APPROVAL_EVENT = new Event("Approval",
             Arrays.<TypeReference<?>>asList(new TypeReference<Address>(true) {}, new TypeReference<Address>(true) {}, new TypeReference<Uint256>(true) {}));
     ;
 

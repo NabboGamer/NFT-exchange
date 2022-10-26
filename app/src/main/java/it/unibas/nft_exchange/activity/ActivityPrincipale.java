@@ -76,6 +76,10 @@ public class ActivityPrincipale extends AppCompatActivity {
         return (FragmentInviaETH) getSupportFragmentManager().findFragmentById(R.id.container);
     }
 
+    public FragmentCollezione getFragmentCollezione(){
+        return (FragmentCollezione) getSupportFragmentManager().findFragmentById(R.id.container);
+    }
+
     public void mostraMessaggioToast(String msg){
         Toast.makeText(this,msg,Toast.LENGTH_LONG).show();
     }

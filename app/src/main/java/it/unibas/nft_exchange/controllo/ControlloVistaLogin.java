@@ -1,5 +1,6 @@
 package it.unibas.nft_exchange.controllo;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -48,6 +49,7 @@ public class ControlloVistaLogin {
                     activityLogin.mostraMessaggioToast("Login effettuato correttamente");
                     activityLogin.mostraActivityPrincipale();
                     Applicazione.getInstance().getModello().putBean(Costanti.PROFILO_CORRENTE, profilo);
+                    Log.d(TAG, "Profilo corrente: " + Applicazione.getInstance().getModello().getBean(Costanti.PROFILO_CORRENTE));
                     return;
                 }
             }

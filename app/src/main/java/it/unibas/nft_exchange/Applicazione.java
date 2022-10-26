@@ -8,6 +8,7 @@ import androidx.multidex.MultiDexApplication;
 
 import java.util.ArrayList;
 
+import it.unibas.nft_exchange.controllo.ControlloFragmentCollezione;
 import it.unibas.nft_exchange.controllo.ControlloFragmentInviaETH;
 import it.unibas.nft_exchange.controllo.ControlloVistaLogin;
 import it.unibas.nft_exchange.controllo.ControlloVistaRegistrazione;
@@ -46,6 +47,7 @@ public class Applicazione extends MultiDexApplication {
     private ControlloVistaLogin controlloVistaLogin = new ControlloVistaLogin();
     private ControlloVistaRegistrazione controlloVistaRegistrazione = new ControlloVistaRegistrazione();
     private ControlloFragmentInviaETH controlloFragmentInviaETH = new ControlloFragmentInviaETH();
+    private ControlloFragmentCollezione controlloFragmentCollezione = new ControlloFragmentCollezione();
 
     public Activity getCurrentActivity() {
         return this.currentActivity;
@@ -70,7 +72,12 @@ public class Applicazione extends MultiDexApplication {
     public ControlloFragmentInviaETH getControlloFragmentInviaETH() {
         return controlloFragmentInviaETH;
     }
-//////////////////////////////////////////////
+
+    public ControlloFragmentCollezione getControlloFragmentCollezione() {
+        return controlloFragmentCollezione;
+    }
+
+    //////////////////////////////////////////////
     //////////////////////////////////////////////
 
     private class GestoreAttivita implements ActivityLifecycleCallbacks {
