@@ -48,7 +48,7 @@ public class AdapterCollezioni extends BaseAdapter {
             riga = recycledView;
         }else{
             LayoutInflater layoutInflater = (LayoutInflater) Applicazione.getInstance().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            riga = layoutInflater.inflate(R.layout.riga_collezione,parent,false);
+            riga = layoutInflater.inflate(R.layout.riga_collezione_spinner,parent,false);
         }
         Collezione collezione = this.listaCollezioni.get(pos);
         TextView labelNomeCollezione = riga.findViewById(R.id.labelNomeCollezione);

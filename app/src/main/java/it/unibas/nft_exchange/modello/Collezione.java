@@ -1,11 +1,15 @@
 package it.unibas.nft_exchange.modello;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Collezione {
 
     private String nome;
     private String descrizione;
     private String contractAddress;
     private String usernameCreatore;
+    private List<NFT> listaNFT = new ArrayList<>();
 
     public Collezione(String nome, String descrizione) {
         this.nome = nome;
@@ -42,6 +46,18 @@ public class Collezione {
 
     public void setUsernameCreatore(String usernameCreatore) {
         this.usernameCreatore = usernameCreatore;
+    }
+
+    public List<NFT> getListaNFT() {
+        return listaNFT;
+    }
+
+    public void setListaNFT(List<NFT> listaNFT) {
+        this.listaNFT = listaNFT;
+    }
+
+    public void aggiungiNFT (NFT nft){
+        this.listaNFT.add(nft);
     }
 
     @Override

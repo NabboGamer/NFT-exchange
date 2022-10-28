@@ -9,4 +9,7 @@ public class Costanti {
     public static final String PROFILO_CORRENTE = "PROFILO_CORRENTE";
     public static final String STRINGA_BILANCIO_ETH = "STRINGA_BILANCIO_ETH";
     public static final String BILANCIO_ETH = "BILANCIO_ETH";
+    public static final String COLLEZIONE_SELEZIONATA = "COLLEZIONE_SELEZIONATA";
+    public static final String URI_IMMAGINE_SELEZIONATA = "URI_IMMAGINE_SELEZIONATA";
+    public static final String BITMAP_IMMAGINE_SELEZIONATA = "BITMAP_IMMAGINE_SELEZIONATA";
 }
