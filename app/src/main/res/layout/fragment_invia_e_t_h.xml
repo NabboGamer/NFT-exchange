@@ -34,7 +34,7 @@
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="match_parent"
-            android:layout_height="96dp"
+            android:layout_height="100dp"
             android:maxHeight="40dp"
             android:minHeight="40dp"
             android:src="@drawable/ethereum_eth_logo" />
@@ -161,9 +161,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="45dp"
             android:layout_marginEnd="30dp"
             android:background="@drawable/bottone_login"
+            android:fontFamily="@font/concert_one"
             android:text="INVIA" />
 
     </LinearLayout>

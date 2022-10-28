@@ -63,11 +63,12 @@ public class AsyncTaskGetBilancio extends AsyncTask<Void, Void, BigDecimal> {
         Log.d(TAG, "Bilancio in ETH: " + stringaBilancioETH.toString());
         Applicazione.getInstance().getModello().putBean(Costanti.STRINGA_BILANCIO_ETH, stringaBilancioETH.toString());
         Applicazione.getInstance().getModello().putBean(Costanti.BILANCIO_ETH, bilancioETH);
-        ActivityPrincipale activityPrincipale = (ActivityPrincipale) Applicazione.getInstance().getCurrentActivity();
         try{
+            ActivityPrincipale activityPrincipale = (ActivityPrincipale) Applicazione.getInstance().getCurrentActivity();
             FragmentInviaETH fragmentInviaETH = activityPrincipale.getFragmentInviaETH();
             fragmentInviaETH.getLabelBilancioInETHInviaETH().setText(stringaBilancioETH);
-        } catch (ClassCastException ccex){
+        } catch (Exception ex){
+            ex.printStackTrace();
             Log.e(TAG,"Non è stato possibile aggiornare il bilancio poichè la finestra è stata cambiata prima di aver ottenuto la risposta dalla blockchain");
         }
     }

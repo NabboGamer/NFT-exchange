@@ -21,7 +21,7 @@
             android:gravity="center"
             android:text="Crea la tua collezione"
             android:textColor="@android:color/black"
-            android:textSize="34sp" />
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/textView11"
@@ -68,18 +68,6 @@
             android:inputType="textMultiLine|textPersonName"
             android:minHeight="48dp" />
 
-        <TextView
-            android:id="@+id/textView13"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="30dp"
-            android:fontFamily="@font/concert_one"
-            android:gravity="center"
-            android:text="Creare una collezione sottrarrà una piccola quantità di ETH dal profilo corrente"
-            android:textColor="@android:color/holo_red_light" />
-
         <Button
             android:id="@+id/bottoneCreaCollezione"
             android:layout_width="match_parent"
@@ -99,13 +87,17 @@
             android:layout_marginTop="30dp"
             android:layout_marginEnd="30dp"
             android:fontFamily="@font/concert_one"
-            android:text="Le tue collezioni" />
+            android:gravity="center"
+            android:text="Le tue collezioni"
+            android:textColor="@android:color/black"
+            android:textSize="24sp" />
 
         <ListView
             android:id="@+id/listViewCollezioniProfilo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
             android:layout_marginEnd="30dp" />
 
     </LinearLayout>
