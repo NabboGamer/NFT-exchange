@@ -44,6 +44,7 @@ public class ControlloVistaRegistrazione {
                 return;
             }
             archivioProfili.aggiungiProfilo(nuovoProfilo);
+            activityRegistrazione.mostraMessaggioToast("Registrazione effettuata correttamente");
             Applicazione.getInstance().getModelloPersistente().saveBean(Costanti.ARCHIVIO_PROFILI,archivioProfili);
             activityRegistrazione.mostraActivityLogin();
         }

@@ -1,15 +1,16 @@
 package it.unibas.nft_exchange.modello;
 
+import java.math.BigInteger;
+
 public class NFT {
 
     private String nome;
     private String descrizione;
-    private int id;
+    private BigInteger id;
 
-    public NFT(String nome, String descrizione, int id) {
+    public NFT(String nome, String descrizione) {
         this.nome = nome;
         this.descrizione = descrizione;
-        this.id = id;
     }
 
     public String getNome() {
@@ -28,11 +29,11 @@ public class NFT {
         this.descrizione = descrizione;
     }
 
-    public int getId() {
+    public BigInteger getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(BigInteger id) {
         this.id = id;
     }
 

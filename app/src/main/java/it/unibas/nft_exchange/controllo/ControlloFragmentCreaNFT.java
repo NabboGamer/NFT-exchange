@@ -1,6 +1,7 @@
 package it.unibas.nft_exchange.controllo;
 
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -11,7 +12,9 @@ import java.util.List;
 import it.unibas.nft_exchange.Applicazione;
 import it.unibas.nft_exchange.Costanti;
 import it.unibas.nft_exchange.activity.ActivityPrincipale;
+import it.unibas.nft_exchange.asyncTask.AsyncTaskMintNFT;
 import it.unibas.nft_exchange.modello.Collezione;
+import it.unibas.nft_exchange.modello.NFT;
 import it.unibas.nft_exchange.modello.Profilo;
 import it.unibas.nft_exchange.vista.FragmentCreaNFT;
 
@@ -68,7 +71,9 @@ public class ControlloFragmentCreaNFT {
         public void onClick(View view) {
             ActivityPrincipale activityPrincipale = (ActivityPrincipale) Applicazione.getInstance().getCurrentActivity();
             FragmentCreaNFT fragmentCreaNFT = activityPrincipale.getFragmentCreaNFT();
+            Profilo profiloCorrente = (Profilo) Applicazione.getInstance().getModello().getBean(Costanti.PROFILO_CORRENTE);
             Bitmap bitmapImmagineSelezionata = (Bitmap) Applicazione.getInstance().getModello().getBean(Costanti.BITMAP_IMMAGINE_SELEZIONATA);
+            Uri uriImmagineSelezionata = (Uri) Applicazione.getInstance().getModello().getBean(Costanti.URI_IMMAGINE_SELEZIONATA);
             if(bitmapImmagineSelezionata == null){
                 activityPrincipale.mostraMessaggioToast("L'immagine è obbligatoria");
                 return;
@@ -84,7 +89,8 @@ public class ControlloFragmentCreaNFT {
             if(errori){
                 return;
             }
-
+            NFT nuovoNFT = new NFT(nome, descrizione);
+            new AsyncTaskMintNFT(uriImmagineSelezionata, nuovoNFT, collezioneSelezionata, profiloCorrente).execute();
         }
 
         private Boolean convalida(FragmentCreaNFT fragmentCreaNFT, String nome, String descrizione) {

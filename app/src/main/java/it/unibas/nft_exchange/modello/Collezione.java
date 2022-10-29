@@ -57,6 +57,9 @@ public class Collezione {
     }
 
     public void aggiungiNFT (NFT nft){
+        if(listaNFT == null){
+            this.listaNFT = new ArrayList<>();
+        }
         this.listaNFT.add(nft);
     }
 
@@ -67,6 +70,7 @@ public class Collezione {
         sb.append(", descrizione='").append(descrizione).append('\'');
         sb.append(", contractAddress='").append(contractAddress).append('\'');
         sb.append(", usernameCreatore='").append(usernameCreatore).append('\'');
+        sb.append(", listaNFT=").append(listaNFT);
         sb.append('}');
         return sb.toString();
     }
