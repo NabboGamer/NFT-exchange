@@ -90,7 +90,7 @@ public class ControlloFragmentCreaNFT {
                 return;
             }
             NFT nuovoNFT = new NFT(nome, descrizione);
-            new AsyncTaskMintNFT(uriImmagineSelezionata, nuovoNFT, collezioneSelezionata, profiloCorrente).execute();
+            new AsyncTaskMintNFT(bitmapImmagineSelezionata, nuovoNFT, collezioneSelezionata, profiloCorrente).execute();
         }
 
         private Boolean convalida(FragmentCreaNFT fragmentCreaNFT, String nome, String descrizione) {

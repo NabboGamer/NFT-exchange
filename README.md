@@ -8,3 +8,5 @@ Questo è il repository unico di NFT Exchange, l'app Android che sto sviluppando
 * Web3j Library
 * OpenZeppelin Smart-Contracts Library
 * Ganache 
+* IPFS HTTP Client Library
+* Docker

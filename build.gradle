@@ -19,5 +19,7 @@ allprojects {
         google()
         jcenter()
         mavenCentral()
+        //To get a Git project into your build:
+        maven { url 'https://jitpack.io' }
     }
 }
