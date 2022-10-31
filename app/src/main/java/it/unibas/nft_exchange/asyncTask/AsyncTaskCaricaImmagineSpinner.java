@@ -21,20 +21,20 @@ import io.ipfs.multihash.Multihash;
 import it.unibas.nft_exchange.Applicazione;
 import it.unibas.nft_exchange.Costanti;
 import it.unibas.nft_exchange.R;
-import it.unibas.nft_exchange.activity.ActivityDettagliCollezione;
+import it.unibas.nft_exchange.activity.ActivityPrincipale;
 import it.unibas.nft_exchange.contract.ThesisToken;
 import it.unibas.nft_exchange.modello.Profilo;
 
-public class AsyncTaskCaricaImmagine extends AsyncTask<Void, Void, Void> {
+public class AsyncTaskCaricaImmagineSpinner extends AsyncTask<Void, Void, Void> {
 
     private static final BigInteger GAS_PRICE = BigInteger.valueOf(20000000000L);
     private static final BigInteger GAS_LIMIT = BigInteger.valueOf(6721975L);
-    private static String TAG = AsyncTaskCaricaImmagine.class.getSimpleName();
+    private static String TAG = AsyncTaskCaricaImmagineSpinner.class.getSimpleName();
     private String contractAddress;
     private BigInteger id;
     private ImageView boxImmagineMostraNFT;
 
-    public AsyncTaskCaricaImmagine(String contractAddress, BigInteger id, ImageView boxImmagineMostraNFT) {
+    public AsyncTaskCaricaImmagineSpinner(String contractAddress, BigInteger id, ImageView boxImmagineMostraNFT) {
         this.contractAddress = contractAddress;
         this.id = id;
         this.boxImmagineMostraNFT = boxImmagineMostraNFT;
@@ -48,11 +48,11 @@ public class AsyncTaskCaricaImmagine extends AsyncTask<Void, Void, Void> {
     @Override
     protected Void doInBackground(Void... voids) {
         Profilo profiloCorrente = (Profilo) Applicazione.getInstance().getModello().getBean(Costanti.PROFILO_CORRENTE);
-        ActivityDettagliCollezione activityDettagliCollezione = null;
+        ActivityPrincipale activityPrincipale = null;
         Web3j web3j = Web3j.build(new HttpService("http://10.0.2.2:8545"));
         TransactionManager transactionManager = new RawTransactionManager(web3j, Credentials.create(profiloCorrente.getChiavePrivata()));
         try {
-            activityDettagliCollezione = (ActivityDettagliCollezione) Applicazione.getInstance().getCurrentActivity();
+            activityPrincipale = (ActivityPrincipale) Applicazione.getInstance().getCurrentActivity();
             ThesisToken thesisToken = ThesisToken.load(contractAddress, web3j, transactionManager, new StaticGasProvider(GAS_PRICE, GAS_LIMIT));
             String uri = thesisToken.tokenURI(id).sendAsync().get();
             Log.d(TAG, "Uri caricato dal contratto: " + uri);
@@ -66,7 +66,7 @@ public class AsyncTaskCaricaImmagine extends AsyncTask<Void, Void, Void> {
             Log.d(TAG, "Content of " + hash + ": " + bitMapImmagine);
 
             // Setto l'immagine
-            activityDettagliCollezione.runOnUiThread(new Runnable() {
+            activityPrincipale.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     boxImmagineMostraNFT.setImageBitmap(bitMapImmagine);
@@ -74,12 +74,12 @@ public class AsyncTaskCaricaImmagine extends AsyncTask<Void, Void, Void> {
             });
         }catch (Exception e){
             e.printStackTrace();
-            if(activityDettagliCollezione != null){
-                ActivityDettagliCollezione finalActivityDettagliCollezione = activityDettagliCollezione;
-                activityDettagliCollezione.runOnUiThread(new Runnable() {
+            if(activityPrincipale != null){
+                ActivityPrincipale finalActivityPrincipale = activityPrincipale;
+                activityPrincipale.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Drawable drawableImageBlack = finalActivityDettagliCollezione.getResources().getDrawable(R.drawable.image_black);
+                        Drawable drawableImageBlack = finalActivityPrincipale.getResources().getDrawable(R.drawable.image_black);
                         boxImmagineMostraNFT.setImageDrawable(drawableImageBlack);
                     }
                 });

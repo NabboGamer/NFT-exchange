@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import it.unibas.nft_exchange.controllo.ControlloFragmentCollezione;
 import it.unibas.nft_exchange.controllo.ControlloFragmentCreaNFT;
 import it.unibas.nft_exchange.controllo.ControlloFragmentInviaETH;
+import it.unibas.nft_exchange.controllo.ControlloFragmentInviaNFT;
 import it.unibas.nft_exchange.controllo.ControlloVistaLogin;
 import it.unibas.nft_exchange.controllo.ControlloVistaRegistrazione;
 import it.unibas.nft_exchange.modello.ArchivioProfili;
@@ -50,6 +51,7 @@ public class Applicazione extends MultiDexApplication {
     private ControlloFragmentInviaETH controlloFragmentInviaETH = new ControlloFragmentInviaETH();
     private ControlloFragmentCollezione controlloFragmentCollezione = new ControlloFragmentCollezione();
     private ControlloFragmentCreaNFT controlloFragmentCreaNFT = new ControlloFragmentCreaNFT();
+    private ControlloFragmentInviaNFT controlloFragmentInviaNFT = new ControlloFragmentInviaNFT();
 
     public Activity getCurrentActivity() {
         return this.currentActivity;
@@ -81,6 +83,10 @@ public class Applicazione extends MultiDexApplication {
 
     public ControlloFragmentCreaNFT getControlloFragmentCreaNFT() {
         return controlloFragmentCreaNFT;
+    }
+
+    public ControlloFragmentInviaNFT getControlloFragmentInviaNFT() {
+        return controlloFragmentInviaNFT;
     }
 
     //////////////////////////////////////////////

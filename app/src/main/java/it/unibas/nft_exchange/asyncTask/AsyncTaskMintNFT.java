@@ -89,6 +89,9 @@ public class AsyncTaskMintNFT extends AsyncTask<Void, Void, Void> {
             Log.d(TAG, "token uri: " + thesisToken.tokenURI(tokenId).sendAsync().get());
             contatore = contatore + 1;
             nuovoNFT.setId(tokenId);
+            String idCollezione = collezioneDiAppartenenza.getNome() + "Of" + collezioneDiAppartenenza.getUsernameCreatore();
+            nuovoNFT.setIdCollezione(idCollezione.replaceAll("\\s", ""));
+            Log.d(TAG, "Settato idCollezione: " + idCollezione.replaceAll("\\s", ""));
             collezioneDiAppartenenza.aggiungiNFT(nuovoNFT);
             ArchivioProfili archivioProfili = (ArchivioProfili) Applicazione.getInstance().getModelloPersistente().getPersistentBean(Costanti.ARCHIVIO_PROFILI, ArchivioProfili.class);
             Applicazione.getInstance().getModelloPersistente().saveBean(Costanti.ARCHIVIO_PROFILI,archivioProfili);
