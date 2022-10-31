@@ -63,7 +63,7 @@ public class AsyncTaskMintNFT extends AsyncTask<Void, Void, Void> {
             NamedStreamable.FileWrapper file = new NamedStreamable.FileWrapper(new File(path));
             MerkleNode response = ipfs.add(file).get(0);
             String hash = response.hash.toBase58(); // Hash of the file
-            System.out.println("Hash (base 58): " + response.hash.toBase58());
+            Log.d(TAG, "Hash (base 58): " + hash);
             //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 

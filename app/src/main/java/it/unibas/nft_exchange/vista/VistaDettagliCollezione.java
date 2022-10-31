@@ -42,13 +42,14 @@ public class VistaDettagliCollezione extends Fragment {
         String usernameCreatore = collezioneSelezionata.getUsernameCreatore();
         String descrizione = collezioneSelezionata.getDescrizione();
         this.labelNomeCollezioneDettagli.setText(nome);
-        this.labelCreatoreCollezioneDettagli.setText(usernameCreatore);
+        this.labelCreatoreCollezioneDettagli.setText("by " + usernameCreatore);
         this.labelDescrizioneCollezioneDettagli.setText(descrizione);
     }
 
     private void inizializzaListaNFT() {
         Collezione collezioneSelezionata = (Collezione) Applicazione.getInstance().getModello().getBean(Costanti.COLLEZIONE_SELEZIONATA_DA_LISTA);
         List<NFT> listaNFT = collezioneSelezionata.getListaNFT();
-
+        AdapterNFTs adapterNFT = new AdapterNFTs(listaNFT);
+        this.listViewNFT.setAdapter(adapterNFT);
     }
 }

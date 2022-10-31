@@ -13,6 +13,7 @@ import java.util.List;
 import it.unibas.nft_exchange.Applicazione;
 import it.unibas.nft_exchange.Costanti;
 import it.unibas.nft_exchange.R;
+import it.unibas.nft_exchange.asyncTask.AsyncTaskCaricaImmagine;
 import it.unibas.nft_exchange.modello.Collezione;
 import it.unibas.nft_exchange.modello.NFT;
 
@@ -55,13 +56,15 @@ public class AdapterNFTs extends BaseAdapter {
         }
         NFT nft = this.listaNFT.get(pos);
 
-        ImageView boxImmagineMostraNFT = riga.findViewById(R.id.boxImmagineMostraNFT);
-        Collezione collezioneSelezionata = (Collezione) Applicazione.getInstance().getModello().getBean(Costanti.COLLEZIONE_SELEZIONATA_DA_LISTA);
-        //new AsyncTaskCaricaImmagine(collezioneSelezionata.getContractAddress(), nft.getId(), boxImmagineMostraNFT).execute();
-
         TextView labelNomeNFTMostraNFT = riga.findViewById(R.id.labelNomeNFTMostraNFT);
+        labelNomeNFTMostraNFT.setText(nft.getNome());
 
         TextView labelDescrizioneNFTMostraNFT = riga.findViewById(R.id.labelDescrizioneNFTMostraNFT);
+        labelDescrizioneNFTMostraNFT.setText(nft.getDescrizione());
+
+        ImageView boxImmagineMostraNFT = riga.findViewById(R.id.boxImmagineMostraNFT);
+        Collezione collezioneSelezionata = (Collezione) Applicazione.getInstance().getModello().getBean(Costanti.COLLEZIONE_SELEZIONATA_DA_LISTA);
+        new AsyncTaskCaricaImmagine(collezioneSelezionata.getContractAddress(), nft.getId(), boxImmagineMostraNFT).execute();
 
         return riga;
     }
