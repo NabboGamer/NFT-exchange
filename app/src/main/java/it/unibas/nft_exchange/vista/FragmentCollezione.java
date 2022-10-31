@@ -32,6 +32,7 @@ public class FragmentCollezione extends Fragment {
         this.bottoneCreaCollezione = vista.findViewById(R.id.bottoneCreaCollezione);
         this.listViewCollezioniProfilo = vista.findViewById(R.id.listViewCollezioniProfilo);
         this.bottoneCreaCollezione.setOnClickListener(Applicazione.getInstance().getControlloFragmentCollezione().getAzioneCreaCollezione());
+        this.listViewCollezioniProfilo.setOnItemClickListener(Applicazione.getInstance().getControlloFragmentCollezione().getAzioneMostraFinestraDettagliCollezione());
         return vista;
     }
 

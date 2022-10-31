@@ -3,6 +3,9 @@
     package="it.unibas.nft_exchange" >
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
 
     <application
         android:name="it.unibas.nft_exchange.Applicazione"
@@ -10,7 +13,8 @@
         android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme"
+        android:requestLegacyExternalStorage="true">
 
         <activity
             android:name="it.unibas.nft_exchange.activity.ActivityLogin"
@@ -23,6 +27,7 @@
         </activity>
         <activity android:name=".activity.ActivityRegistrazione"></activity>
         <activity android:name=".activity.ActivityPrincipale"></activity>
+        <activity android:name=".activity.ActivityDettagliCollezione"></activity>
 
         <meta-data
             android:name="preloaded_fonts"

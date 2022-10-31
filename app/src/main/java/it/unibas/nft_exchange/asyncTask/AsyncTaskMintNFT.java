@@ -1,6 +1,5 @@
 package it.unibas.nft_exchange.asyncTask;
 
-import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -12,6 +11,7 @@ import org.web3j.tx.RawTransactionManager;
 import org.web3j.tx.TransactionManager;
 import org.web3j.tx.gas.StaticGasProvider;
 
+import java.io.File;
 import java.math.BigInteger;
 import java.util.List;
 
@@ -32,14 +32,12 @@ public class AsyncTaskMintNFT extends AsyncTask<Void, Void, Void> {
     private static final BigInteger GAS_PRICE = BigInteger.valueOf(20000000000L);
     private static final BigInteger GAS_LIMIT = BigInteger.valueOf(6721975L);
     private static String TAG = AsyncTaskMintNFT.class.getSimpleName();
-    private Bitmap bitmapImmagineSelezionata;
     private NFT nuovoNFT;
     private Collezione collezioneDiAppartenenza;
     private Profilo profiloCorrente;
     private int contatore = 0;
 
-    public AsyncTaskMintNFT(Bitmap bitmapImmagineSelezionata, NFT nuovoNFT, Collezione collezioneDiAppartenenza, Profilo profiloCorrente) {
-        this.bitmapImmagineSelezionata = bitmapImmagineSelezionata;
+    public AsyncTaskMintNFT(NFT nuovoNFT, Collezione collezioneDiAppartenenza, Profilo profiloCorrente) {
         this.nuovoNFT = nuovoNFT;
         this.collezioneDiAppartenenza = collezioneDiAppartenenza;
         this.profiloCorrente = profiloCorrente;
@@ -56,17 +54,16 @@ public class AsyncTaskMintNFT extends AsyncTask<Void, Void, Void> {
         Web3j web3j = Web3j.build(new HttpService("http://10.0.2.2:8545"));
         TransactionManager transactionManager = new RawTransactionManager(web3j, Credentials.create(profiloCorrente.getChiavePrivata()));
         try {
-
             //////////////////// PARTE NECESSARIA PER TRATTARE LA BITMAP E CARICARLA SU IPFS /////////////////////////////////////////////////////////
-            Log.d(TAG,"BitMap immagine selezionata: " + bitmapImmagineSelezionata);
-            Log.d(TAG,"BitMap immagine selezionata in bytes: " + bitmapImmagineSelezionata.toString().getBytes());
 
             // Aggiungo il file a IPFS
             IPFS ipfs = new IPFS("/ip4/10.0.2.2/tcp/5001");
-            NamedStreamable.ByteArrayWrapper bytearray = new NamedStreamable.ByteArrayWrapper(bitmapImmagineSelezionata.toString().getBytes());
-            MerkleNode response = ipfs.add(bytearray).get(0);
+            String path = (String) Applicazione.getInstance().getModello().getBean(Costanti.PATH_IMMAGINE_SELEZIONATA);
+            Log.d(TAG, "Path:" + path);
+            NamedStreamable.FileWrapper file = new NamedStreamable.FileWrapper(new File(path));
+            MerkleNode response = ipfs.add(file).get(0);
             String hash = response.hash.toBase58(); // Hash of the file
-            Log.d(TAG, "Hash (base 58): " + hash);
+            System.out.println("Hash (base 58): " + response.hash.toBase58());
             //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 

@@ -2,6 +2,7 @@ package it.unibas.nft_exchange.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
@@ -24,6 +25,7 @@ import java.io.IOException;
 import it.unibas.nft_exchange.Applicazione;
 import it.unibas.nft_exchange.Costanti;
 import it.unibas.nft_exchange.R;
+import it.unibas.nft_exchange.W_ImgFilePathUtil;
 import it.unibas.nft_exchange.vista.FragmentCollezione;
 import it.unibas.nft_exchange.vista.FragmentCreaNFT;
 import it.unibas.nft_exchange.vista.FragmentInviaETH;
@@ -117,8 +119,10 @@ public class ActivityPrincipale extends AppCompatActivity {
                     Intent data = result.getData();
                     if (data != null && data.getData() != null) {
                         Uri selectedImageUri = data.getData();
-                        Log.d(TAG, "URI dell'immagine selezionata: " + selectedImageUri);
+                        String pathImmagineSelezionata = W_ImgFilePathUtil.getPath(getApplicationContext(), selectedImageUri);
+                        Log.d(TAG, "Path dell'immagine selezionata:" + pathImmagineSelezionata);
                         Applicazione.getInstance().getModello().putBean(Costanti.URI_IMMAGINE_SELEZIONATA, selectedImageUri);
+                        Applicazione.getInstance().getModello().putBean(Costanti.PATH_IMMAGINE_SELEZIONATA, pathImmagineSelezionata);
                         Bitmap selectedImageBitmap = null;
                         try {
                             selectedImageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImageUri);
@@ -135,4 +139,27 @@ public class ActivityPrincipale extends AppCompatActivity {
             }
     );
 
+    public String getPath(Uri uri) {
+
+        String path = null;
+        String[] projection = { MediaStore.Files.FileColumns.DATA };
+        Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
+
+        if(cursor == null){
+            path = uri.getPath();
+        }
+        else{
+            cursor.moveToFirst();
+            int column_index = cursor.getColumnIndexOrThrow(projection[0]);
+            path = cursor.getString(column_index);
+            cursor.close();
+        }
+
+        return ((path == null || path.isEmpty()) ? (uri.getPath()) : path);
+    }
+
+    public void mostraActivityDettagliCollezione() {
+        Intent intent = new Intent(this, ActivityDettagliCollezione.class);
+        this.startActivity(intent);
+    }
 }

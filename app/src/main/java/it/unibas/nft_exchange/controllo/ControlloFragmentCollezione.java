@@ -2,6 +2,9 @@ package it.unibas.nft_exchange.controllo;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+
+import java.util.List;
 
 import it.unibas.nft_exchange.Applicazione;
 import it.unibas.nft_exchange.Costanti;
@@ -16,9 +19,14 @@ public class ControlloFragmentCollezione {
     private static String TAG = ControlloFragmentCollezione.class.getSimpleName();
 
     private View.OnClickListener azioneCreaCollezione = new AzioneCreaCollezione();
+    private AdapterView.OnItemClickListener azioneMostraFinestraDettagliCollezione = new AzioneMostraFinestraDettagliCollezione();
 
     public View.OnClickListener getAzioneCreaCollezione() {
         return azioneCreaCollezione;
+    }
+
+    public AdapterView.OnItemClickListener getAzioneMostraFinestraDettagliCollezione() {
+        return azioneMostraFinestraDettagliCollezione;
     }
 
     private class AzioneCreaCollezione implements View.OnClickListener {
@@ -54,6 +62,19 @@ public class ControlloFragmentCollezione {
                 errori = true;
             }
             return errori;
+        }
+    }
+
+    private class AzioneMostraFinestraDettagliCollezione implements AdapterView.OnItemClickListener {
+
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            ActivityPrincipale activityPrincipale = (ActivityPrincipale) Applicazione.getInstance().getCurrentActivity();
+            Profilo profiloCorrente = (Profilo) Applicazione.getInstance().getModello().getBean(Costanti.PROFILO_CORRENTE);
+            List<Collezione> listaCollezioni = profiloCorrente.getListaCollezioni();
+            Collezione collezioneSelezionataDaLista = listaCollezioni.get(i);
+            Applicazione.getInstance().getModello().putBean(Costanti.COLLEZIONE_SELEZIONATA_DA_LISTA, collezioneSelezionataDaLista);
+            activityPrincipale.mostraActivityDettagliCollezione();
         }
     }
 }
