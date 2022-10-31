@@ -15,4 +15,6 @@ public class Costanti {
     public static final String COLLEZIONE_SELEZIONATA_DA_LISTA = "COLLEZIONE_SELEZIONATA_DA_LISTA";
     public static final String PATH_IMMAGINE_SELEZIONATA = "PATH_IMMAGINE_SELEZIONATA";
     public static final String LISTA_COLLEZIONI = "LISTA_COLLEZIONI";
+    public static final String LISTA_TOTALE_NFT_PROFILO_CORRENTE = "LISTA_TOTALE_NFT_PROFILO_CORRENTE";
+    public static final String NFT_SELEZIONATO_SPINNER = "NFT_SELEZIONATO_SPINNER";
 }

@@ -63,6 +63,16 @@ public class Collezione {
         this.listaNFT.add(nft);
     }
 
+    public void rimuoviNFT (NFT nft){
+        NFT nftDaRimuovere = null;
+        for (NFT altroNFT: this.listaNFT) {
+            if(nft.getId().equals(altroNFT.getId())){
+                nftDaRimuovere = altroNFT;
+            }
+        }
+        this.listaNFT.remove(nftDaRimuovere);
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Collezione{");

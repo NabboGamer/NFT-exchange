@@ -2,7 +2,6 @@ package it.unibas.nft_exchange.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
@@ -102,6 +101,10 @@ public class ActivityPrincipale extends AppCompatActivity {
         return (FragmentCreaNFT) getSupportFragmentManager().findFragmentById(R.id.container);
     }
 
+    public FragmentInviaNFT getFragmentInviaNFT(){
+        return (FragmentInviaNFT) getSupportFragmentManager().findFragmentById(R.id.container);
+    }
+
     public void mostraMessaggioToast(String msg){
         Toast.makeText(this,msg,Toast.LENGTH_LONG).show();
     }
@@ -138,25 +141,6 @@ public class ActivityPrincipale extends AppCompatActivity {
                 }
             }
     );
-
-    public String getPath(Uri uri) {
-
-        String path = null;
-        String[] projection = { MediaStore.Files.FileColumns.DATA };
-        Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
-
-        if(cursor == null){
-            path = uri.getPath();
-        }
-        else{
-            cursor.moveToFirst();
-            int column_index = cursor.getColumnIndexOrThrow(projection[0]);
-            path = cursor.getString(column_index);
-            cursor.close();
-        }
-
-        return ((path == null || path.isEmpty()) ? (uri.getPath()) : path);
-    }
 
     public void mostraActivityDettagliCollezione() {
         Intent intent = new Intent(this, ActivityDettagliCollezione.class);

@@ -1,10 +1,15 @@
 package it.unibas.nft_exchange.modello;
 
+import android.util.Log;
+
+import org.web3j.crypto.Credentials;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class ArchivioProfili {
 
+    private static String TAG = ArchivioProfili.class.getSimpleName();
     private List<Profilo> listaProfili = new ArrayList<>();
 
     public ArchivioProfili(List<Profilo> listaProfili) {
@@ -39,6 +44,18 @@ public class ArchivioProfili {
             }
         }
         return false;
+    }
+
+    public Profilo getProfiloByAddress(String indirizzo){
+        Log.d(TAG, "indirizzo passato: " + indirizzo);
+        for (Profilo profilo : this.listaProfili) {
+            Credentials credentials = Credentials.create(profilo.getChiavePrivata());
+            Log.d(TAG, "indirizzo profilo: " + credentials.getAddress());
+            if(credentials.getAddress().equalsIgnoreCase(indirizzo)){
+                return profilo;
+            }
+        }
+        return null;
     }
 
     @Override

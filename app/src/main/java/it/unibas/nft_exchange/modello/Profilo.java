@@ -41,6 +41,9 @@ public class Profilo {
     }
 
     public List<Collezione> getListaCollezioni() {
+        if(this.listaCollezioni == null){
+            this.listaCollezioni = new ArrayList<>();
+        }
         return listaCollezioni;
     }
 
@@ -58,6 +61,9 @@ public class Profilo {
     }
 
     public void aggiungiCollezione(Collezione collezione){
+        if(listaCollezioni == null){
+            listaCollezioni = new ArrayList<>();
+        }
         this.listaCollezioni.add(collezione);
     }
 
@@ -73,13 +79,23 @@ public class Profilo {
         return false;
     }
 
+    public Collezione getCollezioneByIdCollezione(String idCollezione){
+        for (Collezione collezione : this.listaCollezioni) {
+            String idAltraCollezione = collezione.getNome() + "Of" + collezione.getUsernameCreatore();
+            if(idCollezione.equals(idAltraCollezione.replaceAll("\\s", ""))){
+                return collezione;
+            }
+        }
+        return null;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Profilo{");
         sb.append("username='").append(username).append('\'');
         sb.append(", password='").append(password).append('\'');
         sb.append(", chiavePrivata='").append(chiavePrivata).append('\'');
-        sb.append(", listaCollezioni=").append(listaCollezioni);
+        //sb.append(", listaCollezioni=").append(listaCollezioni);
         sb.append('}');
         return sb.toString();
     }

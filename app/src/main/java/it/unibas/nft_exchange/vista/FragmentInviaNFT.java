@@ -34,6 +34,7 @@ public class FragmentInviaNFT extends Fragment {
         this.bottoneInviaNFT = vista.findViewById(R.id.bottoneInviaNFT);
         inizializzaSpinner();
         this.spinnerNFT.setOnItemSelectedListener(Applicazione.getInstance().getControlloFragmentInviaNFT().getAzioneSelezionaNFT());
+        this.bottoneInviaNFT.setOnClickListener(Applicazione.getInstance().getControlloFragmentInviaNFT().getAzioneInviaNFT());
         return vista;
     }
 
@@ -45,7 +46,17 @@ public class FragmentInviaNFT extends Fragment {
         for (Collezione collezione : listaCollezioni) {
             listaNFT.addAll(collezione.getListaNFT());
         }
+        Applicazione.getInstance().getModello().putBean(Costanti.LISTA_TOTALE_NFT_PROFILO_CORRENTE, listaNFT);
         AdapterNFTsSpinner adapterNFTsSpinner = new AdapterNFTsSpinner(listaNFT);
         this.spinnerNFT.setAdapter(adapterNFTsSpinner);
     }
+
+    public String getIndirizzoDestinatario(){
+        return this.campoInidirizzoDestinatarioInviaNFT.getText().toString();
+    }
+
+    public void setErroreCampoIndirizzoDestinatario(String err){
+        this.campoInidirizzoDestinatarioInviaNFT.setError(err);
+    }
+
 }
