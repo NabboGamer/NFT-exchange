@@ -68,9 +68,20 @@ public class Collezione {
         for (NFT altroNFT: this.listaNFT) {
             if(nft.getId().equals(altroNFT.getId())){
                 nftDaRimuovere = altroNFT;
+                System.out.println("Ci sono entrato !!!");
             }
         }
         this.listaNFT.remove(nftDaRimuovere);
+    }
+
+    public void rimuoviNFT2 (NFT nft){
+        for (int i = 0; i < this.listaNFT.size(); i++) {
+            if(nft.getId().equals(this.listaNFT.get(i).getId())){
+                this.listaNFT.remove(i);
+                i--;
+                System.out.println("Ci sono entrato !!!");
+            }
+        }
     }
 
     @Override

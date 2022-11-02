@@ -89,13 +89,26 @@ public class Profilo {
         return null;
     }
 
+    public Collezione getCollezioneGiaEsistente(Collezione collezioneDaverificare){
+        if(this.listaCollezioni == null){
+            this.listaCollezioni = new ArrayList<>();
+        }
+        for (Collezione collezione : this.listaCollezioni) {
+            if(collezione.getNome().equals(collezioneDaverificare.getNome()) &&
+               collezione.getUsernameCreatore().equals(collezioneDaverificare.getUsernameCreatore())){
+                return collezione;
+            }
+        }
+        return null;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Profilo{");
         sb.append("username='").append(username).append('\'');
         sb.append(", password='").append(password).append('\'');
         sb.append(", chiavePrivata='").append(chiavePrivata).append('\'');
-        //sb.append(", listaCollezioni=").append(listaCollezioni);
+        sb.append(", listaCollezioni=").append(listaCollezioni);
         sb.append('}');
         return sb.toString();
     }

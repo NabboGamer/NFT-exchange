@@ -1,7 +1,6 @@
 package it.unibas.nft_exchange.vista;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,7 +65,7 @@ public class AdapterNFTsSpinner extends BaseAdapter {
         ImageView boxImmagineMostraNFT = riga.findViewById(R.id.boxImmagineMostraNFT);
         List<Collezione> listaCollezioni = (List<Collezione>) Applicazione.getInstance().getModello().getBean(Costanti.LISTA_COLLEZIONI);
         Collezione collezioneSelezionata = null;
-        Log.d(TAG, "Lista collezioni: " + listaCollezioni);
+        //Log.d(TAG, "Lista collezioni: " + listaCollezioni);
         for (Collezione collezione : listaCollezioni) {
             String idCollezione = collezione.getNome() + "Of" + collezione.getUsernameCreatore();
             if (nft.getIdCollezione().equals(idCollezione.replaceAll("\\s", ""))){

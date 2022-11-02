@@ -21,6 +21,7 @@ import it.unibas.nft_exchange.modello.ArchivioProfili;
 import it.unibas.nft_exchange.modello.Collezione;
 import it.unibas.nft_exchange.modello.NFT;
 import it.unibas.nft_exchange.modello.Profilo;
+import it.unibas.nft_exchange.vista.FragmentInviaNFT;
 
 public class AsyncTaskInviaNFT extends AsyncTask<Void, Void, Void> {
 
@@ -56,8 +57,6 @@ public class AsyncTaskInviaNFT extends AsyncTask<Void, Void, Void> {
             ////////// PARTE NECESSARIA A LIVELLO APPLICATIVO PER RENDERE CONSISTENTE IL TRASFERIMENTO DEL NFT //////////////////////////////////////////////////
             ArchivioProfili archivioProfili = (ArchivioProfili) Applicazione.getInstance().getModelloPersistente().getPersistentBean(Costanti.ARCHIVIO_PROFILI, ArchivioProfili.class);
             Profilo profiloDestinatario = archivioProfili.getProfiloByAddress(this.indirizzoDestinatario);
-            Log.d(TAG, "Profilo Destinatario: " + profiloDestinatario);
-            Log.d(TAG, "Archivio profili: " + archivioProfili);
             if(profiloDestinatario == null){
                 throw new Exception("Profilo inesistente");
             }
@@ -66,9 +65,14 @@ public class AsyncTaskInviaNFT extends AsyncTask<Void, Void, Void> {
             Collezione nuovaCollezione = new Collezione(collezioneCorrente.getNome(), collezioneCorrente.getDescrizione());
             nuovaCollezione.setContractAddress(collezioneCorrente.getContractAddress());
             nuovaCollezione.setUsernameCreatore(profiloCorrente.getUsername());
-            nuovaCollezione.aggiungiNFT(nftCorrente);
-            profiloDestinatario.aggiungiCollezione(nuovaCollezione);
-            collezioneCorrente.rimuoviNFT(nftCorrente);
+            if(profiloDestinatario.getCollezioneGiaEsistente(nuovaCollezione) != null){
+                Collezione collezioneGiaEsistente = profiloDestinatario.getCollezioneGiaEsistente(nuovaCollezione);
+                collezioneGiaEsistente.aggiungiNFT(nftCorrente);
+            } else {
+                nuovaCollezione.aggiungiNFT(nftCorrente);
+                profiloDestinatario.aggiungiCollezione(nuovaCollezione);
+            }
+            collezioneCorrente.rimuoviNFT2(nftCorrente);
             Applicazione.getInstance().getModelloPersistente().saveBean(Costanti.ARCHIVIO_PROFILI,archivioProfili);
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -85,7 +89,6 @@ public class AsyncTaskInviaNFT extends AsyncTask<Void, Void, Void> {
                 @Override
                 public void run() {
                     activityPrincipale.mostraMessaggioToast("NFT inviato correttamente");
-                    //activityPrincipale.aggiornaFragment(activityPrincipale.getFragmentInviaNFT());
                 }
             });
         } catch (Exception e){
@@ -94,6 +97,7 @@ public class AsyncTaskInviaNFT extends AsyncTask<Void, Void, Void> {
                 @Override
                 public void run() {
                     activityPrincipale.mostraMessaggioToast("Impossibile inviare l'NFT");
+                    Log.d(TAG, "STAMPA profilo corrente: " + profiloCorrente);
                 }
             });
         }
@@ -103,5 +107,12 @@ public class AsyncTaskInviaNFT extends AsyncTask<Void, Void, Void> {
     @Override
     protected void onPostExecute(Void unused) {
         super.onPostExecute(unused);
+        ActivityPrincipale activityPrincipale = (ActivityPrincipale) Applicazione.getInstance().getCurrentActivity();
+        try{
+            FragmentInviaNFT fragmentInviaNFT = activityPrincipale.getFragmentInviaNFT();
+            activityPrincipale.aggiornaFragment(fragmentInviaNFT);
+        } catch (ClassCastException ccex){
+            Log.e(TAG,"Non è stato possibile inviare l'NFT poichè la finestra è stata cambiata prima di aver ottenuto la risposta dalla blockchain");
+        }
     }
 }

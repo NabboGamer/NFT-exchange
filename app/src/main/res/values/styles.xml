@@ -2,13 +2,13 @@
 <resources>
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="android:fontFamily">@font/concert_one</item>
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
         <item name="colorButtonNormal">@color/bottone_normale</item>
         <item name="colorControlHighlight">@color/bottone_selezionato</item>
         <item name="android:buttonStyle">@style/ColoredButton</item>
+        <item name="android:fontFamily">@font/concert_one</item>
     </style>
 
     <!-- Stile Bottoni -->
