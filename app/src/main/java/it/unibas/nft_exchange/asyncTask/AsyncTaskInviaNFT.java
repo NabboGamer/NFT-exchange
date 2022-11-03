@@ -64,7 +64,7 @@ public class AsyncTaskInviaNFT extends AsyncTask<Void, Void, Void> {
             Log.d(TAG, "Profilo destinatario: " + profiloDestinatario);
             Collezione nuovaCollezione = new Collezione(collezioneCorrente.getNome(), collezioneCorrente.getDescrizione());
             nuovaCollezione.setContractAddress(collezioneCorrente.getContractAddress());
-            nuovaCollezione.setUsernameCreatore(profiloCorrente.getUsername());
+            nuovaCollezione.setUsernameCreatore(collezioneCorrente.getUsernameCreatore());
             if(profiloDestinatario.getCollezioneGiaEsistente(nuovaCollezione) != null){
                 Collezione collezioneGiaEsistente = profiloDestinatario.getCollezioneGiaEsistente(nuovaCollezione);
                 collezioneGiaEsistente.aggiungiNFT(nftCorrente);

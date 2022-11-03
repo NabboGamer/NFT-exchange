@@ -89,13 +89,13 @@ public class Profilo {
         return null;
     }
 
-    public Collezione getCollezioneGiaEsistente(Collezione collezioneDaverificare){
+    public Collezione getCollezioneGiaEsistente(Collezione collezioneDaVerificare){
         if(this.listaCollezioni == null){
             this.listaCollezioni = new ArrayList<>();
         }
         for (Collezione collezione : this.listaCollezioni) {
-            if(collezione.getNome().equals(collezioneDaverificare.getNome()) &&
-               collezione.getUsernameCreatore().equals(collezioneDaverificare.getUsernameCreatore())){
+            if(collezione.getNome().equals(collezioneDaVerificare.getNome()) &&
+               collezione.getUsernameCreatore().equals(collezioneDaVerificare.getUsernameCreatore())){
                 return collezione;
             }
         }
