@@ -27,4 +27,8 @@
         <item name="android:fontFamily">@font/concert_one</item>
     </style>
 
+    <style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorPrimary">@color/bottone_arrotondato_colore_iniziale</item>
+    </style>
+
 </resources>

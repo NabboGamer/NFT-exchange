@@ -16,7 +16,6 @@ import java.util.List;
 import it.unibas.nft_exchange.Applicazione;
 import it.unibas.nft_exchange.Costanti;
 import it.unibas.nft_exchange.activity.ActivityPrincipale;
-import it.unibas.nft_exchange.asyncTask.AsyncTaskMintNFT;
 import it.unibas.nft_exchange.modello.Collezione;
 import it.unibas.nft_exchange.modello.NFT;
 import it.unibas.nft_exchange.modello.Profilo;
@@ -100,8 +99,9 @@ public class ControlloFragmentCreaNFT {
                 return;
             }
             NFT nuovoNFT = new NFT(nome, descrizione);
+            Applicazione.getInstance().getModello().putBean(Costanti.NUOVO_NFT, nuovoNFT);
             verifyStoragePermissions(activityPrincipale);
-            new AsyncTaskMintNFT(nuovoNFT, collezioneSelezionata, profiloCorrente).execute();
+            activityPrincipale.mostraMessaggioAlertCreazioneNFT("ATTENZIONE creare un NFT richiede una piccola quantità di ETH");
         }
 
         private Boolean convalida(FragmentCreaNFT fragmentCreaNFT, String nome, String descrizione) {

@@ -9,7 +9,6 @@ import java.util.List;
 import it.unibas.nft_exchange.Applicazione;
 import it.unibas.nft_exchange.Costanti;
 import it.unibas.nft_exchange.activity.ActivityPrincipale;
-import it.unibas.nft_exchange.asyncTask.AsyncTaskDeployContract;
 import it.unibas.nft_exchange.modello.Collezione;
 import it.unibas.nft_exchange.modello.Profilo;
 import it.unibas.nft_exchange.vista.FragmentCollezione;
@@ -48,7 +47,8 @@ public class ControlloFragmentCollezione {
                 return;
             }
             Collezione collezione = new Collezione(nome, descrizione);
-            new AsyncTaskDeployContract(collezione, profiloCorrente).execute();
+            Applicazione.getInstance().getModello().putBean(Costanti.COLLEZIONE_DA_CREARE, collezione);
+            activityPrincipale.mostraMessaggioAlertCreazioneCollezione("ATTENZIONE creare una collezione richiede una piccola quantità di ETH");
         }
 
         private Boolean convalida(FragmentCollezione fragmentCollezione, String nome, String descrizione) {

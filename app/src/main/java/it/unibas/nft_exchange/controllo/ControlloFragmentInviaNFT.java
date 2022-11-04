@@ -13,7 +13,6 @@ import java.util.List;
 import it.unibas.nft_exchange.Applicazione;
 import it.unibas.nft_exchange.Costanti;
 import it.unibas.nft_exchange.activity.ActivityPrincipale;
-import it.unibas.nft_exchange.asyncTask.AsyncTaskInviaNFT;
 import it.unibas.nft_exchange.modello.NFT;
 import it.unibas.nft_exchange.modello.Profilo;
 import it.unibas.nft_exchange.vista.AdapterNFTsSpinner;
@@ -68,7 +67,9 @@ public class ControlloFragmentInviaNFT {
                 activityPrincipale.mostraMessaggioToast("L'NFT è obbligatorio");
                 return;
             }
-            new AsyncTaskInviaNFT(profiloCorrente, indirizzoDestinatario, nftSelezionato).execute();
+            Applicazione.getInstance().getModello().putBean(Costanti.INDIRIZZO_DESTINATARIO, indirizzoDestinatario);
+            Applicazione.getInstance().getModello().putBean(Costanti.NFT_SELEZIONATO, nftSelezionato);
+            activityPrincipale.mostraMessaggioAlertInviaNFT("ATTENZIONE inviare un NFT richiede una piccola quantità di ETH");
         }
 
         private boolean convalida(FragmentInviaNFT fragmentInviaNFT, Profilo profiloCorrente, String indirizzoDestinatario) {

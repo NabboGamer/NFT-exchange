@@ -36,12 +36,16 @@
     <style name="BottomNavigation.ActiveItemTextAppearance" parent="TextAppearance.AppCompat">
         <item name="android:textStyle">bold</item>
         <item name="android:fontFamily">@font/concert_one</item>
-        <item name="android:textColor">@color/bottone_arrotondato_colore_finale</item>
+        <item name="android:textColor">#c900cc</item>
     </style>
 
     <style name="BottomNavigation.InactiveItemTextAppearance" parent="TextAppearance.AppCompat">
         <item name="android:fontFamily">@font/concert_one</item>
         <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorPrimary">@color/bottone_arrotondato_colore_iniziale</item>
     </style>
 
 </resources>

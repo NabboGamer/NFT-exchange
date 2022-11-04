@@ -12,6 +12,7 @@ import it.unibas.nft_exchange.controllo.ControlloFragmentCollezione;
 import it.unibas.nft_exchange.controllo.ControlloFragmentCreaNFT;
 import it.unibas.nft_exchange.controllo.ControlloFragmentInviaETH;
 import it.unibas.nft_exchange.controllo.ControlloFragmentInviaNFT;
+import it.unibas.nft_exchange.controllo.ControlloPrincipale;
 import it.unibas.nft_exchange.controllo.ControlloVistaLogin;
 import it.unibas.nft_exchange.controllo.ControlloVistaRegistrazione;
 import it.unibas.nft_exchange.modello.ArchivioProfili;
@@ -52,6 +53,7 @@ public class Applicazione extends MultiDexApplication {
     private ControlloFragmentCollezione controlloFragmentCollezione = new ControlloFragmentCollezione();
     private ControlloFragmentCreaNFT controlloFragmentCreaNFT = new ControlloFragmentCreaNFT();
     private ControlloFragmentInviaNFT controlloFragmentInviaNFT = new ControlloFragmentInviaNFT();
+    private ControlloPrincipale controlloPrincipale = new ControlloPrincipale();
 
     public Activity getCurrentActivity() {
         return this.currentActivity;
@@ -87,6 +89,10 @@ public class Applicazione extends MultiDexApplication {
 
     public ControlloFragmentInviaNFT getControlloFragmentInviaNFT() {
         return controlloFragmentInviaNFT;
+    }
+
+    public ControlloPrincipale getControlloPrincipale() {
+        return controlloPrincipale;
     }
 
     //////////////////////////////////////////////

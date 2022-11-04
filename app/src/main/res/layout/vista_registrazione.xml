@@ -18,7 +18,7 @@
             android:fontFamily="@font/concert_one"
             android:gravity="center"
             android:text="Registrati"
-            android:textColor="@color/design_default_color_on_secondary"
+            android:textColor="@android:color/black"
             android:textSize="34sp" />
 
         <TextView
@@ -97,8 +97,7 @@
             android:fontFamily="@font/concert_one"
             android:hint="🔑 Inserisci la tua chiave privata"
             android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:text="c3433bb9d586314e63586c7e108b587e2ad4fdab3ebe5aaa34e6925e50d49523" />
+            android:minHeight="48dp" />
 
         <Button
             android:id="@+id/bottoneRegistrati"

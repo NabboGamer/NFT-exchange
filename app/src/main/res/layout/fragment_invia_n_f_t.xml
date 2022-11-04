@@ -31,8 +31,7 @@
             android:fontFamily="@font/concert_one"
             android:hint="🏠 Inserisci l'indirizzo del destinatario"
             android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:text="0x365a2457b6e9b6886bc5c31C4AA4DE3dA5cE1c5A" />
+            android:minHeight="48dp" />
 
         <TextView
             android:id="@+id/textView19"
@@ -42,7 +41,7 @@
             android:layout_marginTop="30dp"
             android:layout_marginEnd="30dp"
             android:fontFamily="@font/concert_one"
-            android:text="Scelgi un NFT" />
+            android:text="Scegli un NFT" />
 
         <Spinner
             android:id="@+id/spinnerNFT"

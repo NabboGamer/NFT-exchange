@@ -12,7 +12,6 @@ import java.math.BigInteger;
 import it.unibas.nft_exchange.Applicazione;
 import it.unibas.nft_exchange.Costanti;
 import it.unibas.nft_exchange.activity.ActivityPrincipale;
-import it.unibas.nft_exchange.asyncTask.AsyncTaskInviaETH;
 import it.unibas.nft_exchange.modello.Profilo;
 import it.unibas.nft_exchange.vista.FragmentInviaETH;
 
@@ -71,7 +70,12 @@ public class ControlloFragmentInviaETH {
                 return;
             }
             String chiavePrivataMittente = profilo.getChiavePrivata();
-            new AsyncTaskInviaETH(chiavePrivataMittente, indirizzoDestinatario, importoAggiustato, prezzoGASAggiustato, limiteGASAggiustato).execute();
+            Applicazione.getInstance().getModello().putBean(Costanti.CHIAVE_PRIVATA_MITTENTE, chiavePrivataMittente);
+            Applicazione.getInstance().getModello().putBean(Costanti.INDIRIZZO_DESTINATARIO_INVIO_ETH, indirizzoDestinatario);
+            Applicazione.getInstance().getModello().putBean(Costanti.IMPORTO_AGGIUSTATO, importoAggiustato);
+            Applicazione.getInstance().getModello().putBean(Costanti.PREZZO_GAS_AGGIUSTATO, prezzoGASAggiustato);
+            Applicazione.getInstance().getModello().putBean(Costanti.LIMITE_GAS_AGGIUSTATO, limiteGASAggiustato);
+            activityPrincipale.mostraMessaggioAlertInviaETH("ATTENZIONE inviare una somma richiede una piccola quantità aggiuntiva di ETH");
         }
 
         private Boolean convalida(FragmentInviaETH fragmentInviaETH, String indirizzoDestinatario, String stringaImporto, String stringaPrezzoGAS, String stringaLimiteGAS) {
