@@ -37,6 +37,7 @@ public class ControlloPrincipale {
         return azioneNegaConsensoCreazioneCollezione;
     }
 
+
     public DialogInterface.OnClickListener getAzioneConcediConsensoCreazioneNFT() {
         return azioneConcediConsensoCreazioneNFT;
     }
@@ -44,6 +45,7 @@ public class ControlloPrincipale {
     public DialogInterface.OnClickListener getAzioneNegaConsensoCreazioneNFT() {
         return azioneNegaConsensoCreazioneNFT;
     }
+
 
     public DialogInterface.OnClickListener getAzioneConcediConsensoInviaNFT() {
         return azioneConcediConsensoInviaNFT;
@@ -53,6 +55,7 @@ public class ControlloPrincipale {
         return azioneNegaConsensoInviaNFT;
     }
 
+
     public DialogInterface.OnClickListener getAzioneConcediConsensoInviaETH() {
         return azioneConcediConsensoInviaETH;
     }
@@ -60,6 +63,7 @@ public class ControlloPrincipale {
     public DialogInterface.OnClickListener getAzioneNegaConsensoInviaETH() {
         return azioneNegaConsensoInviaETH;
     }
+
 
     private class AzioneConcediConsensoCreazioneCollezione implements DialogInterface.OnClickListener {
 

@@ -11,6 +11,10 @@ import android.widget.Spinner;
 
 import androidx.core.app.ActivityCompat;
 
+import org.web3j.utils.Convert;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.List;
 
 import it.unibas.nft_exchange.Applicazione;
@@ -101,7 +105,11 @@ public class ControlloFragmentCreaNFT {
             NFT nuovoNFT = new NFT(nome, descrizione);
             Applicazione.getInstance().getModello().putBean(Costanti.NUOVO_NFT, nuovoNFT);
             verifyStoragePermissions(activityPrincipale);
-            activityPrincipale.mostraMessaggioAlertCreazioneNFT("ATTENZIONE creare un NFT richiede una piccola quantità di ETH");
+            BigInteger gasPrice = BigInteger.valueOf(20000000000L);
+            BigInteger gasLimit = BigInteger.valueOf(6721975L);
+            BigDecimal commissioni = new BigDecimal(gasPrice.multiply(gasLimit));
+            BigDecimal commissioniInETH = Convert.fromWei(commissioni, Convert.Unit.ETHER);
+            activityPrincipale.mostraMessaggioAlertCreazioneNFT("ATTENZIONE creare un NFT richiederà al massimo " + commissioniInETH + " ETH");
         }
 
         private Boolean convalida(FragmentCreaNFT fragmentCreaNFT, String nome, String descrizione) {

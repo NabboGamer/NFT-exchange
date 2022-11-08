@@ -4,6 +4,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 
+import org.web3j.utils.Convert;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.List;
 
 import it.unibas.nft_exchange.Applicazione;
@@ -48,7 +52,11 @@ public class ControlloFragmentCollezione {
             }
             Collezione collezione = new Collezione(nome, descrizione);
             Applicazione.getInstance().getModello().putBean(Costanti.COLLEZIONE_DA_CREARE, collezione);
-            activityPrincipale.mostraMessaggioAlertCreazioneCollezione("ATTENZIONE creare una collezione richiede una piccola quantità di ETH");
+            BigInteger gasPrice = BigInteger.valueOf(20000000000L);
+            BigInteger gasLimit = BigInteger.valueOf(6721975L);
+            BigDecimal commissioni = new BigDecimal(gasPrice.multiply(gasLimit));
+            BigDecimal commissioniInETH = Convert.fromWei(commissioni, Convert.Unit.ETHER);
+            activityPrincipale.mostraMessaggioAlertCreazioneCollezione("ATTENZIONE creare una collezione richiederà al massimo " + commissioniInETH + " ETH");
         }
 
         private Boolean convalida(FragmentCollezione fragmentCollezione, String nome, String descrizione) {

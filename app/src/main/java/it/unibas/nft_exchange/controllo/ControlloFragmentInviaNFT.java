@@ -7,7 +7,10 @@ import android.widget.Spinner;
 
 import org.web3j.crypto.Credentials;
 import org.web3j.crypto.WalletUtils;
+import org.web3j.utils.Convert;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.List;
 
 import it.unibas.nft_exchange.Applicazione;
@@ -69,7 +72,11 @@ public class ControlloFragmentInviaNFT {
             }
             Applicazione.getInstance().getModello().putBean(Costanti.INDIRIZZO_DESTINATARIO, indirizzoDestinatario);
             Applicazione.getInstance().getModello().putBean(Costanti.NFT_SELEZIONATO, nftSelezionato);
-            activityPrincipale.mostraMessaggioAlertInviaNFT("ATTENZIONE inviare un NFT richiede una piccola quantità di ETH");
+            BigInteger gasPrice = BigInteger.valueOf(20000000000L);
+            BigInteger gasLimit = BigInteger.valueOf(6721975L);
+            BigDecimal commissioni = new BigDecimal(gasPrice.multiply(gasLimit));
+            BigDecimal commissioniInETH = Convert.fromWei(commissioni, Convert.Unit.ETHER);
+            activityPrincipale.mostraMessaggioAlertInviaNFT("ATTENZIONE inviare un NFT richiederà al massimo " + commissioniInETH + " ETH");
         }
 
         private boolean convalida(FragmentInviaNFT fragmentInviaNFT, Profilo profiloCorrente, String indirizzoDestinatario) {

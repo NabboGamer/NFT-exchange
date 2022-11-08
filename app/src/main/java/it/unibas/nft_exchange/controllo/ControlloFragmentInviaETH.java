@@ -75,7 +75,11 @@ public class ControlloFragmentInviaETH {
             Applicazione.getInstance().getModello().putBean(Costanti.IMPORTO_AGGIUSTATO, importoAggiustato);
             Applicazione.getInstance().getModello().putBean(Costanti.PREZZO_GAS_AGGIUSTATO, prezzoGASAggiustato);
             Applicazione.getInstance().getModello().putBean(Costanti.LIMITE_GAS_AGGIUSTATO, limiteGASAggiustato);
-            activityPrincipale.mostraMessaggioAlertInviaETH("ATTENZIONE inviare una somma richiede una piccola quantità aggiuntiva di ETH");
+            BigInteger gasPrice = BigInteger.valueOf(20000000000L);
+            BigInteger gasLimit = BigInteger.valueOf(6721975L);
+            BigDecimal commissioni1 = new BigDecimal(gasPrice.multiply(gasLimit));
+            BigDecimal commissioniInETH1 = Convert.fromWei(commissioni1, Convert.Unit.ETHER);
+            activityPrincipale.mostraMessaggioAlertInviaETH("ATTENZIONE inviare una somma richiederà al massimo " + commissioniInETH1 + " ETH");
         }
 
         private Boolean convalida(FragmentInviaETH fragmentInviaETH, String indirizzoDestinatario, String stringaImporto, String stringaPrezzoGAS, String stringaLimiteGAS) {
